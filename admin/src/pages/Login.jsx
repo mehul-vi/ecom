@@ -26,9 +26,14 @@ function Login() {
         { email, password },
         { withCredentials: true }
       )
-      toast.success('Admin login successful')
-      getAdmin()
-      navigate('/')
+      const success = await getAdmin()
+      if (success) {
+        toast.success('Admin login successful')
+        // Navigation handled by App.jsx or effect
+        navigate('/')
+      } else {
+        toast.error('Login succeeded but admin session failed.')
+      }
     } catch (error) {
       toast.error('Admin login failed')
     } finally {
