@@ -26,7 +26,7 @@ function Login() {
     try {
       let result = await axios.post(serverUrl + '/api/auth/login', { email, password }, { withCredentials: true })
       setLoading(false)
-      getCurrentUser()
+      await getCurrentUser()
       navigate("/")
       toast.success("User Login Successful")
     } catch (error) {
@@ -42,7 +42,7 @@ function Login() {
       let name = user.displayName;
       let email = user.email
       const result = await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
-      getCurrentUser()
+      await getCurrentUser()
       navigate("/")
     } catch (error) {
       console.log(error)

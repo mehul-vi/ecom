@@ -26,7 +26,7 @@ function Registration() {
     setLoading(true)
     try {
       const result = await axios.post(serverUrl + '/api/auth/registration', { name, email, password }, { withCredentials: true })
-      getCurrentUser()
+      await getCurrentUser()
       navigate("/")
       toast.success("User Registration Successful")
       setLoading(false)
@@ -43,7 +43,7 @@ function Registration() {
       let name = user.displayName;
       let email = user.email
       const result = await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
-      getCurrentUser()
+      await getCurrentUser()
       navigate("/")
       toast.success("User Registration Successful")
     } catch (error) {
