@@ -7,7 +7,7 @@ const connectDb = async () => {
         return conn;
     } catch (error) {
         console.error(`Error: ${error.message}`);
-        process.exit(1);
+        // process.exit(1); // Do not exit in serverless environment
     }
 };
 
