@@ -28,7 +28,7 @@ app.use(cookieParser())
 app.use(
   cors({
     origin: [
-      "https://ecom-peach-nine.vercel.app/login",
+      "https://ecom-peach-nine.vercel.app",
       "http://localhost:5173",
       "http://localhost:5174",
       process.env.FRONTEND_URL // Allow frontend URL from env
