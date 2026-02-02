@@ -26,9 +26,12 @@ function Registration() {
     setLoading(true)
     try {
       const result = await axios.post(serverUrl + '/api/auth/registration', { name, email, password }, { withCredentials: true })
-      await getCurrentUser()
-      navigate("/")
-      toast.success("User Registration Successful")
+      const success = await getCurrentUser()
+      if (success) {
+        toast.success("User Registration Successful")
+      } else {
+        toast.error("Registration succeeded but session failed.")
+      }
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -43,9 +46,12 @@ function Registration() {
       let name = user.displayName;
       let email = user.email
       const result = await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
-      await getCurrentUser()
-      navigate("/")
-      toast.success("User Registration Successful")
+      const success = await getCurrentUser()
+      if (success) {
+        toast.success("User Registration Successful")
+      } else {
+        toast.error("Google Signup succeeded but session failed.")
+      }
     } catch (error) {
       toast.error("User Registration Failed")
     }

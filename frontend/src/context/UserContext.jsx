@@ -15,9 +15,11 @@ function UserContext({ children }) {
       })
       setUserData(result.data)
       console.log('Current User:', result.data)
+      return true
     } catch (error) {
       setUserData(null)
       console.error('Error fetching current user:', error)
+      return false
     }
   }
 
