@@ -60,11 +60,13 @@ app.use((err, req, res, next) => {
 
 
 // Start server
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+// Start server
+if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
 }
+
 
 export default app
