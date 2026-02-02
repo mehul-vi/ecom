@@ -35,30 +35,32 @@ function Order() {
   }, [])
 
   return (
-    <div className='w-[99vw] min-h-[100vh] p-5 pb-[150px] bg-[#EFE9E4]'>
+    <div className='w-full min-h-[100vh] p-6 pb-[150px] bg-base'>
       <div className='w-full text-center mt-20'>
         <Title text1={'MY'} text2={'ORDER'} />
       </div>
-      <div className='w-full flex flex-col gap-5 mt-10 text-[#0F0F0F]'>
+      <div className='w-full flex flex-col gap-6 mt-10 text-primary'>
         {
           orderData.map((item, index) => (
-            <div key={index} className='w-full border rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] p-4 relative flex gap-6 items-start bg-white'>
+            <div key={index} className='w-full border border-border rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] p-6 relative flex flex-col md:flex-row gap-6 items-start bg-white transition-all hover:shadow-lg'>
               <img src={item.image1} alt={item.name} className='w-[130px] h-[130px] rounded-2xl object-cover' />
               <div className='flex flex-col gap-2 flex-grow'>
-                <p className='text-2xl font-semibold'>{item.name}</p>
-                <div className='flex gap-10 flex-wrap text-lg text-[#9B8C80]'>
+                <p className='text-2xl font-bold'>{item.name}</p>
+                <div className='flex gap-6 flex-wrap text-lg text-secondary font-medium'>
                   <p>{currency} {item.price}</p>
                   <p>Quantity: {item.quantity}</p>
                   <p>Size: {item.size}</p>
                 </div>
-                <p className='text-sm mt-2 text-[#6B655B]'>Date: <span className='text-[#0F0F0F] font-medium'>{new Date(item.date).toDateString()}</span></p>
-                <p className='text-sm text-[#6B655B]'>Payment Method: {item.paymentMethod}</p>
+                <div className="mt-2 text-sm text-gray-500 flex flex-col gap-1">
+                  <p>Date: <span className='text-primary font-medium'>{new Date(item.date).toDateString()}</span></p>
+                  <p>Payment Method: <span className='font-medium text-primary'>{item.paymentMethod}</span></p>
+                </div>
               </div>
-              <div className='absolute top-6 right-6 flex items-center gap-2'>
-                <span className='w-4 h-4 rounded-full bg-green-500'></span>
-                <p className='text-lg font-semibold text-[#0F0F0F]'>{item.status}</p>
+              <div className='absolute md:static top-6 right-6 flex items-center gap-2'>
+                <span className={`w-3 h-3 rounded-full ${item.status === 'Delivered' ? 'bg-green-500' : 'bg-secondary'}`}></span>
+                <p className='text-lg font-semibold text-primary'>{item.status}</p>
               </div>
-              <button className='absolute bottom-4 right-6 bg-[#0F0F0F] text-[#EFE9E4] py-2 px-4 rounded-full hover:bg-[#9B8C80] transition' onClick={loadOrderData}>Track Order</button>
+              <button className='absolute bottom-6 right-6 md:static bg-primary text-white py-2 px-6 rounded-full hover:bg-secondary transition shadow-md' onClick={loadOrderData}>Track Order</button>
             </div>
           ))
         }

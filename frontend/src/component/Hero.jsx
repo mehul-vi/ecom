@@ -10,7 +10,7 @@ function Hero({ heroData }) {
 
       {/* Animated Text */}
       <motion.div
-        key={heroData.text1}          // Text animate hota hai
+        key={heroData.text1}
         initial={{ opacity: 0, x: -60 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -60 }}
@@ -22,7 +22,7 @@ function Hero({ heroData }) {
           {heroData.text1}
         </p>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.7)]">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.7)] font-outfit">
           {heroData.text2}
         </h1>
 
@@ -32,8 +32,8 @@ function Hero({ heroData }) {
 
         {/* Button fixed with text */}
         <div className="mt-6 flex justify-center md:justify-start">
-          <button className="px-10 py-3 bg-[#0EA5E9] rounded-full text-lg font-semibold shadow-lg 
-                             hover:bg-[#0284C7] transition-all duration-300 hover:scale-105">
+          <button className="px-10 py-3 bg-white text-primary rounded-full text-lg font-semibold shadow-lg 
+                             hover:bg-secondary hover:text-white transition-all duration-300 hover:scale-105">
             Shop Now
           </button>
         </div>

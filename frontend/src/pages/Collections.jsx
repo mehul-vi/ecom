@@ -15,7 +15,7 @@ function Collections() {
   // Memoized filter functions
   const toggleCategory = useCallback((e) => {
     const value = e.target.value;
-    setCategory(prev => prev.includes(value) 
+    setCategory(prev => prev.includes(value)
       ? prev.filter(item => item !== value)
       : [...prev, value]
     );
@@ -32,36 +32,36 @@ function Collections() {
   // Memoized filtered products
   const filterProduct = useMemo(() => {
     let filtered = products;
-    
+
     // Apply search filter
     if (showSearch && search) {
       const searchLower = search.toLowerCase();
-      filtered = filtered.filter(item => 
+      filtered = filtered.filter(item =>
         item.name.toLowerCase().includes(searchLower)
       );
     }
-    
+
     // Apply category filter
     if (category.length > 0) {
-      filtered = filtered.filter(item => 
+      filtered = filtered.filter(item =>
         category.includes(item.category)
       );
     }
-    
+
     // Apply subcategory filter
     if (subCategory.length > 0) {
-      filtered = filtered.filter(item => 
+      filtered = filtered.filter(item =>
         subCategory.includes(item.subCategory)
       );
     }
-    
+
     return filtered;
   }, [products, search, showSearch, category, subCategory]);
 
   // Memoized sorted products
   const sortedProducts = useMemo(() => {
     const productsCopy = [...filterProduct];
-    
+
     switch (sortType) {
       case 'low-high':
         return productsCopy.sort((a, b) => a.price - b.price);
@@ -85,12 +85,12 @@ function Collections() {
     return (
       <div className="w-full min-h-[70vh] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 md:px-8">
         {sortedProducts.map((item) => (
-          <Card 
-            key={item._id} 
-            id={item._id} 
-            name={item.name} 
-            price={item.price} 
-            image={item.image1} 
+          <Card
+            key={item._id}
+            id={item._id}
+            name={item.name}
+            price={item.price}
+            image={item.image1}
           />
         ))}
       </div>
@@ -98,10 +98,10 @@ function Collections() {
   }, [sortedProducts]);
 
   return (
-    <div className="w-full min-h-screen bg-[#EFE9E4] flex md:flex-row flex-col pt-[70px] overflow-x-hidden pb-28">
+    <div className="w-full min-h-screen bg-base flex md:flex-row flex-col pt-[70px] overflow-x-hidden pb-28">
       {/* Mobile Filter Toggle Button */}
       <button
-        className="md:hidden fixed bottom-6 right-6 z-50 bg-[#9B8C80] text-white p-4 rounded-full shadow-lg hover:bg-[#7A6D63] transition-colors"
+        className="md:hidden fixed bottom-6 right-6 z-50 bg-secondary text-white p-4 rounded-full shadow-lg hover:bg-[#7A6D63] transition-colors"
         onClick={() => setShowFilter(prev => !prev)}
       >
         {showFilter ? <FaTimes className="text-xl" /> : <FaFilter className="text-xl" />}
@@ -111,16 +111,16 @@ function Collections() {
       <div className={`
         md:w-[30vw] lg:w-[20vw] w-full md:min-h-[100vh] 
         ${showFilter ? "h-auto" : "h-[70px]"} 
-        p-5 border-r border-[#C8BDB3] text-[#9B8C80] bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] 
+        p-5 border-r border-border text-secondary bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] 
         transition-all duration-300
         ${isSidebarOpen ? 'lg:block' : 'lg:hidden'}
         ${showFilter ? 'block' : 'hidden md:block'}
         relative
       `}>
-        
+
         {/* Desktop Sidebar Toggle */}
         <button
-          className="hidden lg:flex absolute -right-3 top-6 bg-[#9B8C80] text-white p-2 rounded-full shadow-lg hover:bg-[#7A6D63] transition-colors z-10"
+          className="hidden lg:flex absolute -right-3 top-6 bg-secondary text-white p-2 rounded-full shadow-lg hover:bg-[#7A6D63] transition-colors z-10"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
           {isSidebarOpen ? <FaTimes className="text-sm" /> : <FaBars className="text-sm" />}
@@ -128,20 +128,20 @@ function Collections() {
 
         {/* Mobile Filter Header */}
         <div className="flex items-center justify-between">
-          <p 
-            className="text-2xl font-semibold flex items-center cursor-pointer select-none" 
+          <p
+            className="text-2xl font-semibold flex items-center cursor-pointer select-none"
             onClick={() => setShowFilter(prev => !prev)}
           >
-            FILTERS 
+            FILTERS
             <span className="ml-2 md:hidden">
               {showFilter ? <FaChevronDown className="text-xl" /> : <FaChevronRight className="text-xl" />}
             </span>
           </p>
-          
+
           {/* Mobile Close Button */}
           {showFilter && (
             <button
-              className="md:hidden text-[#9B8C80] hover:text-[#7A6D63] transition-colors"
+              className="md:hidden text-secondary hover:text-primary transition-colors"
               onClick={() => setShowFilter(false)}
             >
               <FaTimes className="text-xl" />
@@ -151,22 +151,22 @@ function Collections() {
 
         {/* Categories Filter */}
         <div className={`
-          border border-[#E6D9CF] p-4 mt-6 rounded-xl bg-[#F5F2EF] 
+          border border-border p-4 mt-6 rounded-xl bg-base 
           transition-all duration-300 
           ${showFilter ? "opacity-100 max-h-[500px]" : "opacity-0 max-h-0 overflow-hidden"} 
           md:opacity-100 md:max-h-[500px] md:overflow-visible
         `}>
-          <p className="text-xl font-semibold text-[#0F0F0F] mb-3">CATEGORIES</p>
+          <p className="text-xl font-semibold text-primary mb-3">CATEGORIES</p>
           <div className="flex flex-col gap-3 text-base font-light">
             {['Men', 'Women', 'Kids'].map((cat) => (
-              <label key={cat} className="flex items-center gap-3 cursor-pointer hover:text-[#0F0F0F] transition-colors">
-                <input 
-                  type="checkbox" 
-                  value={cat} 
-                  className="w-4 h-4 accent-[#9B8C80] cursor-pointer" 
-                  onChange={toggleCategory} 
+              <label key={cat} className="flex items-center gap-3 cursor-pointer hover:text-primary transition-colors">
+                <input
+                  type="checkbox"
+                  value={cat}
+                  className="w-4 h-4 accent-secondary cursor-pointer"
+                  onChange={toggleCategory}
                   checked={category.includes(cat)}
-                /> 
+                />
                 {cat}
               </label>
             ))}
@@ -175,22 +175,22 @@ function Collections() {
 
         {/* Sub-categories Filter */}
         <div className={`
-          border border-[#E6D9CF] p-4 mt-6 rounded-xl bg-[#F5F2EF] 
+          border border-border p-4 mt-6 rounded-xl bg-base 
           transition-all duration-300 
           ${showFilter ? "opacity-100 max-h-[500px]" : "opacity-0 max-h-0 overflow-hidden"} 
           md:opacity-100 md:max-h-[500px] md:overflow-visible
         `}>
-          <p className="text-xl font-semibold text-[#0F0F0F] mb-3">SUB-CATEGORIES</p>
+          <p className="text-xl font-semibold text-primary mb-3">SUB-CATEGORIES</p>
           <div className="flex flex-col gap-3 text-base font-light">
             {['TopWear', 'BottomWear', 'WinterWear'].map((subCat) => (
-              <label key={subCat} className="flex items-center gap-3 cursor-pointer hover:text-[#0F0F0F] transition-colors">
-                <input 
-                  type="checkbox" 
-                  value={subCat} 
-                  className="w-4 h-4 accent-[#9B8C80] cursor-pointer" 
-                  onChange={toggleSubCategory} 
+              <label key={subCat} className="flex items-center gap-3 cursor-pointer hover:text-primary transition-colors">
+                <input
+                  type="checkbox"
+                  value={subCat}
+                  className="w-4 h-4 accent-secondary cursor-pointer"
+                  onChange={toggleSubCategory}
                   checked={subCategory.includes(subCat)}
-                /> 
+                />
                 {subCat}
               </label>
             ))}
@@ -204,7 +204,7 @@ function Collections() {
           md:opacity-100 md:max-h-[100px] md:overflow-visible
         `}>
           <button
-            className="w-full bg-[#9B8C80] text-white py-3 px-4 rounded-xl hover:bg-[#7A6D63] transition-colors font-medium"
+            className="w-full bg-secondary text-white py-3 px-4 rounded-xl hover:bg-[#7A6D63] transition-colors font-medium"
             onClick={() => {
               setCategory([]);
               setSubCategory([]);
@@ -217,23 +217,23 @@ function Collections() {
 
       {/* Main Content */}
       <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'lg:pl-[20%]' : 'lg:pl-4'} md:py-3`}>
-        
+
         {/* Header with Toggle Button for Desktop */}
         <div className="flex items-center justify-between px-4 md:px-8 py-5">
           <div className="flex items-center gap-4">
             {/* Desktop Toggle Button */}
             <button
-              className="hidden lg:flex bg-[#9B8C80] text-white p-3 rounded-xl hover:bg-[#7A6D63] transition-colors"
+              className="hidden lg:flex bg-secondary text-white p-3 rounded-xl hover:bg-[#7A6D63] transition-colors"
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             >
               {isSidebarOpen ? <FaTimes className="text-lg" /> : <FaBars className="text-lg" />}
             </button>
             <Title text1={"ALL"} text2={"COLLECTIONS"} />
           </div>
-          
-          <select 
+
+          <select
             value={sortType}
-            className="bg-[#F5F2EF] text-[#0F0F0F] w-full lg:w-44 h-12 px-4 rounded-full border border-[#9B8C80] hover:border-[#0F0F0F] focus:outline-none focus:ring-2 focus:ring-[#9B8C80] transition-colors cursor-pointer"
+            className="bg-white text-primary w-full lg:w-44 h-12 px-4 rounded-full border border-secondary hover:border-primary focus:outline-none focus:ring-2 focus:ring-secondary transition-colors cursor-pointer"
             onChange={(e) => setSortType(e.target.value)}
           >
             <option value="relavent">Sort By: Relevant</option>
@@ -247,9 +247,9 @@ function Collections() {
           <div className="px-4 md:px-8 mb-4">
             <div className="flex flex-wrap gap-2">
               {category.map(cat => (
-                <span key={cat} className="bg-[#9B8C80] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                <span key={cat} className="bg-secondary text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
                   {cat}
-                  <button 
+                  <button
                     onClick={() => setCategory(prev => prev.filter(item => item !== cat))}
                     className="hover:text-gray-200"
                   >
@@ -260,7 +260,7 @@ function Collections() {
               {subCategory.map(subCat => (
                 <span key={subCat} className="bg-[#7A6D63] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
                   {subCat}
-                  <button 
+                  <button
                     onClick={() => setSubCategory(prev => prev.filter(item => item !== subCat))}
                     className="hover:text-gray-200"
                   >

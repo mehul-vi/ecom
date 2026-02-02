@@ -107,37 +107,39 @@ function PlaceOrder() {
   }
 
   return (
-    <div className='w-full min-h-[100vh] bg-[#EFE9E4] flex flex-col md:flex-row items-center justify-center gap-12 p-8'>
+    <div className='w-full min-h-[100vh] bg-base flex flex-col md:flex-row items-center justify-center gap-12 p-8 pt-20'>
       <div className='lg:w-1/2 w-full'>
-        <form onSubmit={onSubmitHandler} className='bg-white p-8 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)]'>
+        <form onSubmit={onSubmitHandler} className='bg-white p-8 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-border'>
           <Title text1={'DELIVERY'} text2={'INFORMATION'} />
           <div className='grid grid-cols-2 gap-6 mt-6'>
-            <input type="text" placeholder='First name' name='firstName' required value={formData.firstName} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-[#C8BDB3] rounded-full focus:outline-none focus:ring-2 focus:ring-[#9B8C80]' />
-            <input type="text" placeholder='Last name' name='lastName' required value={formData.lastName} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-[#C8BDB3] rounded-full focus:outline-none focus:ring-2 focus:ring-[#9B8C80]' />
-            <input type="email" placeholder='Email address' name='email' required value={formData.email} onChange={onChangeHandler} className='col-span-2 h-12 px-4 border border-[#C8BDB3] rounded-full focus:outline-none focus:ring-2 focus:ring-[#9B8C80]' />
-            <input type="text" placeholder='Street' name='street' required value={formData.street} onChange={onChangeHandler} className='col-span-2 h-12 px-4 border border-[#C8BDB3] rounded-full focus:outline-none focus:ring-2 focus:ring-[#9B8C80]' />
-            <input type="text" placeholder='City' name='city' required value={formData.city} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-[#C8BDB3] rounded-full focus:outline-none focus:ring-2 focus:ring-[#9B8C80]' />
-            <input type="text" placeholder='State' name='state' required value={formData.state} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-[#C8BDB3] rounded-full focus:outline-none focus:ring-2 focus:ring-[#9B8C80]' />
-            <input type="text" placeholder='Pincode' name='pinCode' required value={formData.pinCode} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-[#C8BDB3] rounded-full focus:outline-none focus:ring-2 focus:ring-[#9B8C80]' />
-            <input type="text" placeholder='Country' name='country' required value={formData.country} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-[#C8BDB3] rounded-full focus:outline-none focus:ring-2 focus:ring-[#9B8C80]' />
-            <input type="text" placeholder='Phone' name='phone' required value={formData.phone} onChange={onChangeHandler} className='col-span-2 h-12 px-4 border border-[#C8BDB3] rounded-full focus:outline-none focus:ring-2 focus:ring-[#9B8C80]' />
+            <input type="text" placeholder='First name' name='firstName' required value={formData.firstName} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary' />
+            <input type="text" placeholder='Last name' name='lastName' required value={formData.lastName} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary' />
+            <input type="email" placeholder='Email address' name='email' required value={formData.email} onChange={onChangeHandler} className='col-span-2 h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary' />
+            <input type="text" placeholder='Street' name='street' required value={formData.street} onChange={onChangeHandler} className='col-span-2 h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary' />
+            <input type="text" placeholder='City' name='city' required value={formData.city} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary' />
+            <input type="text" placeholder='State' name='state' required value={formData.state} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary' />
+            <input type="text" placeholder='Pincode' name='pinCode' required value={formData.pinCode} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary' />
+            <input type="text" placeholder='Country' name='country' required value={formData.country} onChange={onChangeHandler} className='col-span-1 h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary' />
+            <input type="text" placeholder='Phone' name='phone' required value={formData.phone} onChange={onChangeHandler} className='col-span-2 h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary' />
           </div>
 
-          <button type='submit' disabled={loading} className='mt-6 w-full py-3 bg-[#0F0F0F] text-[#C8BDB3] font-semibold rounded-full hover:bg-[#9B8C80] transition flex justify-center items-center'>
+          <button type='submit' disabled={loading} className='mt-8 w-full py-4 bg-primary text-white font-bold text-lg rounded-full hover:bg-secondary transition-all shadow-lg flex justify-center items-center'>
             {loading ? <Loading /> : "PLACE ORDER"}
           </button>
         </form>
       </div>
       <div className='lg:w-1/2 w-full flex flex-col items-center gap-8'>
         <CartTotal />
-        <Title text1={'PAYMENT'} text2={'METHOD'} />
-        <div className='flex gap-8'>
-          <button onClick={() => setMethod('razorpay')} className={`w-[150px] h-[50px] rounded-2xl border-4 ${method === 'razorpay' ? 'border-blue-900' : 'border-transparent'} overflow-hidden`}>
-            <img src={razorpay} alt="Razorpay" className='w-full h-full object-cover rounded-2xl' />
-          </button>
-          <button onClick={() => setMethod('cod')} className={`w-[200px] h-[50px] rounded-2xl font-bold ${method === 'cod' ? 'bg-gradient-to-t from-[#95b3f8] to-[white] border-4 border-blue-900' : 'bg-gradient-to-t from-[#ebe9f7] to-[#c8bfd9] text-[#332f6f]'}`}>
-            CASH ON DELIVERY
-          </button>
+        <div className="w-full lg:max-w-md">
+          <Title text1={'PAYMENT'} text2={'METHOD'} />
+          <div className='flex gap-4 mt-4 justify-center'>
+            <button onClick={() => setMethod('razorpay')} className={`w-[150px] h-[60px] rounded-xl border-2 flex items-center justify-center p-2 bg-white transition-all ${method === 'razorpay' ? 'border-secondary shadow-md scale-105' : 'border-border hover:border-gray-400'}`}>
+              <img src={razorpay} alt="Razorpay" className='h-full object-contain' />
+            </button>
+            <button onClick={() => setMethod('cod')} className={`w-[180px] h-[60px] rounded-xl border-2 flex items-center justify-center font-bold text-sm transition-all ${method === 'cod' ? 'border-secondary bg-secondary text-white shadow-md scale-105' : 'border-border bg-white text-gray-500 hover:border-gray-400'}`}>
+              CASH ON DELIVERY
+            </button>
+          </div>
         </div>
       </div>
     </div>
