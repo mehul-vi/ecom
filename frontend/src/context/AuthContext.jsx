@@ -1,20 +1,20 @@
 import React from 'react'
 import { createContext } from 'react'
-export const authDataContext= createContext()
-function AuthContext({children}) {
-    let serverUrl = "https://ecom-backend-ashen-mu.vercel.app"
+export const authDataContext = createContext()
+function AuthContext({ children }) {
+  const serverUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000"
 
-    let value = {
-       serverUrl
-    }
+  let value = {
+    serverUrl
+  }
   return (
 
-    
+
     <div>
-        <authDataContext.Provider value={value}>
-            {children}
-        </authDataContext.Provider>
-      
+      <authDataContext.Provider value={value}>
+        {children}
+      </authDataContext.Provider>
+
     </div>
   )
 }
