@@ -32,8 +32,7 @@ function Hero({ heroData }) {
 
         {/* Button fixed with text */}
         <div className="mt-6 flex justify-center md:justify-start">
-          <button className="px-10 py-3 bg-white text-primary rounded-full text-lg font-semibold shadow-lg 
-                             hover:bg-secondary hover:text-white transition-all duration-300 hover:scale-105">
+          <button className="btn-primary text-lg">
             Shop Now
           </button>
         </div>

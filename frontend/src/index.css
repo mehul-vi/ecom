@@ -6,7 +6,7 @@
   --color-base: #EFE9E4;
   --color-surface: #FFFFFF;
   --color-border: #E6D9CF;
-  
+
   --font-outfit: "Outfit", sans-serif;
 }
 
@@ -14,4 +14,19 @@
   background-color: var(--color-base);
   color: var(--color-primary);
   font-family: var(--font-outfit);
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-8 py-3 bg-primary text-white rounded-full font-medium shadow-md transition-all duration-300 ease-in-out hover:bg-secondary hover:scale-105 active:scale-95 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-3 bg-white text-primary border border-border rounded-full font-medium shadow-sm transition-all duration-300 ease-in-out hover:bg-base hover:border-secondary hover:scale-105 active:scale-95 cursor-pointer;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl;
+  }
 }

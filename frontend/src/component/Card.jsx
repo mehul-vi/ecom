@@ -19,7 +19,7 @@ function Card({ name, image, id, price }) {
 
   return (
     <div
-      className='w-full max-w-[300px] h-[400px] bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] cursor-pointer overflow-hidden flex flex-col p-4 border border-border hover:scale-105 transition-transform duration-300 mx-auto'
+      className='w-full max-w-[300px] h-[400px] bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] cursor-pointer overflow-hidden flex flex-col p-4 border border-border card-hover mx-auto'
       onClick={() => navigate(`/productdetail/${id}`)}
     >
       {/* Image Container - Fixed height */}

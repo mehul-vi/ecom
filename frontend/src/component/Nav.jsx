@@ -40,10 +40,10 @@ function Nav() {
       {/* Desktop Navigation */}
       <div className="hidden md:flex items-center gap-6 text-primary font-medium">
         <ul className="flex items-center gap-6 text-lg">
-          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all" onClick={() => navigate("/")}>Home</li>
-          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all" onClick={() => navigate("/collection")}>Collections</li>
-          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all" onClick={() => navigate("/about")}>About</li>
-          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all" onClick={() => navigate("/contact")}>Contact</li>
+          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out" onClick={() => navigate("/")}>Home</li>
+          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out" onClick={() => navigate("/collection")}>Collections</li>
+          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out" onClick={() => navigate("/about")}>About</li>
+          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out" onClick={() => navigate("/contact")}>Contact</li>
         </ul>
       </div>
 
