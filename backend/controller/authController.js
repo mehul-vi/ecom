@@ -32,11 +32,13 @@ export const registration = async (req, res) => {
         let token = await genToken(user._id)
 
         const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+        const onVercel = process.env.VERCEL === '1';
+        const secureCookie = isProduction || onVercel;
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: isProduction,
-            sameSite: isProduction ? "None" : "Strict",
+            secure: secureCookie,
+            sameSite: secureCookie ? "None" : "Lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
         return res.status(201).json({
@@ -75,11 +77,13 @@ export const login = async (req, res) => {
         let token = await genToken(user._id)
 
         const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+        const onVercel = process.env.VERCEL === '1';
+        const secureCookie = isProduction || onVercel;
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: isProduction,
-            sameSite: isProduction ? "None" : "Strict",
+            secure: secureCookie,
+            sameSite: secureCookie ? "None" : "Lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
         return res.status(200).json({
@@ -120,11 +124,13 @@ export const googleLogin = async (req, res) => {
         let token = await genToken(user._id)
 
         const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+        const onVercel = process.env.VERCEL === '1';
+        const secureCookie = isProduction || onVercel;
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: isProduction,
-            sameSite: isProduction ? "None" : "Strict",
+            secure: secureCookie,
+            sameSite: secureCookie ? "None" : "Lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
         return res.status(200).json(user)
@@ -144,11 +150,13 @@ export const adminLogin = async (req, res) => {
             let token = await genToken1(email)
 
             const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+            const onVercel = process.env.VERCEL === '1';
+            const secureCookie = isProduction || onVercel;
 
             const cookieOptions = {
                 httpOnly: true,
-                secure: isProduction,
-                sameSite: isProduction ? "None" : "Strict",
+                secure: secureCookie,
+                sameSite: secureCookie ? "None" : "Lax",
                 maxAge: 7 * 24 * 60 * 60 * 1000
             };
 
