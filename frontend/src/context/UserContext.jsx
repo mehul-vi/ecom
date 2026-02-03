@@ -6,6 +6,7 @@ export const userDataContext = createContext()
 
 function UserContext({ children }) {
   const [userData, setUserData] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
   const { serverUrl } = useContext(authDataContext)
 
   const getCurrentUser = async () => {
@@ -20,6 +21,8 @@ function UserContext({ children }) {
       setUserData(null)
       console.error('Error fetching current user:', error)
       return false
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -31,6 +34,7 @@ function UserContext({ children }) {
     userData,
     setUserData,
     getCurrentUser,
+    isLoading
   }
 
   return (
