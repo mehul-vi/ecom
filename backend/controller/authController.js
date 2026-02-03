@@ -124,8 +124,8 @@ export const googleLogin = async (req, res) => {
         return res.status(200).json(user)
 
     } catch (error) {
-        console.log("googleLogin error")
-        return res.status(500).json({ message: `googleLogin error ${error}` })
+        console.error("googleLogin error:", error)
+        return res.status(500).json({ message: error.message || "Google Login failed" })
     }
 
 }
