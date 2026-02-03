@@ -23,19 +23,41 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault()
     setLoading(true)
+    console.log("Login attempt starting...", { serverUrl, email })
+
+    if (!serverUrl) {
+      toast.error("Server URL is missing! Check config.")
+      setLoading(false)
+      return
+    }
+
     try {
       let result = await axios.post(serverUrl + '/api/auth/login', { email, password }, { withCredentials: true })
+      console.log("Login API result:", result.data)
+
       setLoading(false)
+
+      console.log("Fetching current user...")
       const success = await getCurrentUser()
+      console.log("getCurrentUser result:", success)
+
       if (success) {
         toast.success("User Login Successful")
-        // Navigate handled by App.jsx based on userData
+        // Explicitly navigate as a fail-safe, though App.jsx should normally handle it
+        navigate("/", { replace: true })
       } else {
-        toast.error("Login succeeded but session failed. Check cookies.")
+        toast.error("Login succeeded but session check failed.")
       }
     } catch (error) {
+      console.error("Login Error:", error)
       setLoading(false)
-      toast.error("User Login Failed")
+      if (error.response) {
+        toast.error(error.response.data.message || "Login Failed: Server Error")
+      } else if (error.request) {
+        toast.error("Login Failed: No response from server. Check connection.")
+      } else {
+        toast.error("Login Failed: " + error.message)
+      }
     }
   }
 
