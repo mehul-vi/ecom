@@ -78,6 +78,5 @@ export const removeProduct = async (req, res) => {
         console.error("RemoveProduct error:", error);
         return res.status(500).json({ message: "Failed to remove product. Please try again later." })
     }
-}
 
 }

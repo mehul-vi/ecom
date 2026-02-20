@@ -61,17 +61,24 @@ function Login() {
 
   const googlelogin = async () => {
     try {
+      setLoading(true);
       const response = await signInWithPopup(auth, provider)
       let user = response.user
       let name = user.displayName;
       let email = user.email
       await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
       const success = await getCurrentUser()
-      if (!success) {
+      setLoading(false);
+      if (success) {
+        toast.success("Google Login Successful")
+        navigate("/")
+      } else {
         toast.error("Google Login succeeded but session failed.")
       }
     } catch (err) {
-      console.log(err)
+      setLoading(false);
+      console.error("Google Login Error:", err)
+      toast.error("Google Login Failed: " + err.message || "Something went wrong")
     }
   }
 
