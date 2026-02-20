@@ -25,7 +25,7 @@ function Registration() {
     e.preventDefault()
     setLoading(true)
     try {
-      const result = await axios.post(serverUrl + '/api/auth/registration', { name, email, password }, { withCredentials: true })
+      await axios.post(serverUrl + '/api/auth/registration', { name, email, password }, { withCredentials: true })
       const success = await getCurrentUser()
       if (success) {
         toast.success("User Registration Successful")
@@ -33,7 +33,7 @@ function Registration() {
         toast.error("Registration succeeded but session failed.")
       }
       setLoading(false)
-    } catch (error) {
+    } catch {
       setLoading(false)
       toast.error("User Registration Failed")
     }
@@ -45,14 +45,14 @@ function Registration() {
       let user = response.user
       let name = user.displayName;
       let email = user.email
-      const result = await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
+      await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
       const success = await getCurrentUser()
       if (success) {
         toast.success("User Registration Successful")
       } else {
         toast.error("Google Signup succeeded but session failed.")
       }
-    } catch (error) {
+    } catch {
       toast.error("User Registration Failed")
     }
   }

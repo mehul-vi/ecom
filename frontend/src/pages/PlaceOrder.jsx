@@ -77,7 +77,7 @@ function PlaceOrder() {
         amount: getCartAmount() + delivery_fee
       }
       switch (method) {
-        case 'cod':
+        case 'cod': {
           const result = await axios.post(serverUrl + "/api/order/placeorder", orderData, { withCredentials: true })
           if (result.data) {
             setCartItem({})
@@ -89,7 +89,8 @@ function PlaceOrder() {
             setLoading(false)
           }
           break;
-        case 'razorpay':
+        }
+        case 'razorpay': {
           const resultRazorpay = await axios.post(serverUrl + "/api/order/razorpay", orderData, { withCredentials: true })
           if (resultRazorpay.data) {
             initPay(resultRazorpay.data)
@@ -97,6 +98,7 @@ function PlaceOrder() {
             setLoading(false)
           }
           break;
+        }
         default:
           break;
       }

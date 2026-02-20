@@ -32,7 +32,7 @@ function Order() {
 
   useEffect(() => {
     loadOrderData()
-  }, [])
+  }, [loadOrderData])
 
   return (
     <div className='w-[99vw] min-h-[100vh] p-5 pb-[150px] bg-[#EFE9E4]'>

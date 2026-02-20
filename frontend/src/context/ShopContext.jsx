@@ -137,11 +137,11 @@ function ShopContext({children}) {
 
     useEffect(()=>{
      getProducts()
-    },[])
+    },[getProducts])
 
     useEffect(() => {
     getUserCart()
-  },[])
+  },[getUserCart])
 
 
 

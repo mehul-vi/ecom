@@ -24,7 +24,7 @@ function Login() {
     e.preventDefault()
     setLoading(true)
     try {
-      let result = await axios.post(serverUrl + '/api/auth/login', { email, password }, { withCredentials: true })
+      await axios.post(serverUrl + '/api/auth/login', { email, password }, { withCredentials: true })
       setLoading(false)
       const success = await getCurrentUser()
       if (success) {
@@ -33,7 +33,7 @@ function Login() {
       } else {
         toast.error("Login succeeded but session failed. Check cookies.")
       }
-    } catch (error) {
+    } catch {
       setLoading(false)
       toast.error("User Login Failed")
     }
@@ -45,13 +45,13 @@ function Login() {
       let user = response.user
       let name = user.displayName;
       let email = user.email
-      const result = await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
+      await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
       const success = await getCurrentUser()
       if (!success) {
         toast.error("Google Login succeeded but session failed.")
       }
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err)
     }
   }
 
