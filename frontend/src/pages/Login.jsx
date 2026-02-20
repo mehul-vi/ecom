@@ -32,13 +32,7 @@ function Login() {
     }
 
     try {
-<<<<<<< HEAD
       await axios.post(serverUrl + '/api/auth/login', { email, password }, { withCredentials: true })
-=======
-      let result = await axios.post(serverUrl + '/api/auth/login', { email, password }, { withCredentials: true })
-      console.log("Login API result:", result.data)
-
->>>>>>> 7e9ac08512b2545c7266ecd9d49c6bc089b7ab7a
       setLoading(false)
 
       console.log("Fetching current user...")
@@ -52,12 +46,8 @@ function Login() {
       } else {
         toast.error("Login succeeded but session check failed.")
       }
-<<<<<<< HEAD
-    } catch {
-=======
     } catch (error) {
       console.error("Login Error:", error)
->>>>>>> 7e9ac08512b2545c7266ecd9d49c6bc089b7ab7a
       setLoading(false)
       if (error.response) {
         toast.error(error.response.data.message || "Login Failed: Server Error")

@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-import React, { useContext } from 'react'
-=======
-import React, { useCallback, useContext, Suspense, lazy } from 'react'
->>>>>>> 7e9ac08512b2545c7266ecd9d49c6bc089b7ab7a
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+
+
+import React, { useContext, Suspense, lazy } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Nav from './component/Nav'
 import { userDataContext } from './context/UserContext'
 import { ToastContainer } from 'react-toastify';
@@ -27,7 +25,6 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   let { userData } = useContext(userDataContext)
-  let location = useLocation()
 
   return (
     <>
