@@ -25,6 +25,7 @@ const app = express()
 
 app.use(express.json({ limit: '10mb' }))
 app.use(cookieParser())
+app.enable('trust proxy'); // Important for Vercel/proxies to correctly handle req.secure and cookies
 app.use(
   cors({
     origin: [

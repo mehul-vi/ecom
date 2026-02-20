@@ -15,7 +15,7 @@ function LatestCollection() {
     <div>
       <div className='text-center md:mt-12'>
         <Title text1={"LATEST"} text2={"COLLECTIONS"} />
-        <p className='max-w-xl mx-auto text-blue-300 text-lg px-4'>Step Into Style – New Collection Dropping This Season!</p>
+        <p className='max-w-xl mx-auto text-secondary text-lg px-4'>Step Into Style – New Collection Dropping This Season!</p>
       </div>
       <div className='mt-8 flex flex-wrap justify-center gap-12 px-6'>
         {latestProducts.map((item, index) => (

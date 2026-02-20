@@ -24,10 +24,10 @@ function Home() {
   }, [])
 
   return (
-    <div className='overflow-x-hidden relative top-[70px] bg-[#EFE9E4]'>
-      
+    <div className='overflow-x-hidden relative top-[70px] bg-base'>
+
       {/* Hero Section */}
-      <div className='w-full lg:h-[100vh] md:h-[50vh] sm:h-[30vh] bg-[#EFE9E4] relative rounded-2xl overflow-hidden'>
+      <div className='w-full lg:h-[100vh] md:h-[50vh] sm:h-[30vh] bg-base relative rounded-2xl overflow-hidden'>
         <Backgound heroCount={heroCount} />
         <Hero
           heroCount={heroCount}

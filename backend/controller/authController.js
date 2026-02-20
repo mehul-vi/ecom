@@ -30,11 +30,15 @@ export const registration = async (req, res) => {
 
         const user = await User.create({ name, email, password: hashPassword })
         let token = await genToken(user._id)
-        const isProduction = process.env.NODE_ENV === 'production';
+
+        const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+        const onVercel = process.env.VERCEL === '1';
+        const secureCookie = isProduction || onVercel;
+
         res.cookie("token", token, {
             httpOnly: true,
-            secure: isProduction,
-            sameSite: isProduction ? "None" : "Strict",
+            secure: secureCookie,
+            sameSite: secureCookie ? "None" : "Lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
         return res.status(201).json({
@@ -71,11 +75,15 @@ export const login = async (req, res) => {
             return res.status(400).json({ message: "Incorrect password" })
         }
         let token = await genToken(user._id)
-        const isProduction = process.env.NODE_ENV === 'production';
+
+        const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+        const onVercel = process.env.VERCEL === '1';
+        const secureCookie = isProduction || onVercel;
+
         res.cookie("token", token, {
             httpOnly: true,
-            secure: isProduction,
-            sameSite: isProduction ? "None" : "Strict",
+            secure: secureCookie,
+            sameSite: secureCookie ? "None" : "Lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
         return res.status(200).json({
@@ -114,18 +122,22 @@ export const googleLogin = async (req, res) => {
         }
 
         let token = await genToken(user._id)
-        const isProduction = process.env.NODE_ENV === 'production';
+
+        const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+        const onVercel = process.env.VERCEL === '1';
+        const secureCookie = isProduction || onVercel;
+
         res.cookie("token", token, {
             httpOnly: true,
-            secure: isProduction,
-            sameSite: isProduction ? "None" : "Strict",
+            secure: secureCookie,
+            sameSite: secureCookie ? "None" : "Lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
         return res.status(200).json(user)
 
     } catch (error) {
-        console.log("googleLogin error")
-        return res.status(500).json({ message: `googleLogin error ${error}` })
+        console.error("googleLogin error:", error)
+        return res.status(500).json({ message: error.message || "Google Login failed" })
     }
 
 }
@@ -136,11 +148,15 @@ export const adminLogin = async (req, res) => {
         let { email, password } = req.body
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
             let token = await genToken1(email)
-            const isProduction = process.env.NODE_ENV === 'production';
+
+            const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+            const onVercel = process.env.VERCEL === '1';
+            const secureCookie = isProduction || onVercel;
+
             const cookieOptions = {
                 httpOnly: true,
-                secure: isProduction,
-                sameSite: isProduction ? "None" : "Strict",
+                secure: secureCookie,
+                sameSite: secureCookie ? "None" : "Lax",
                 maxAge: 7 * 24 * 60 * 60 * 1000
             };
 

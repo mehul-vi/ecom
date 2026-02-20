@@ -1,68 +1,108 @@
+<<<<<<< HEAD
 import React, { useContext } from 'react'
+=======
+import React, { useCallback, useContext, Suspense, lazy } from 'react'
+>>>>>>> 7e9ac08512b2545c7266ecd9d49c6bc089b7ab7a
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import Registration from './pages/Registration'
-import Home from './pages/Home'
-import Login from './pages/Login'
 import Nav from './component/Nav'
 import { userDataContext } from './context/UserContext'
-import About from './pages/About'
-import Collections from './pages/Collections'
-import Product from './pages/Product'
-import Contact from './pages/Contact'
-import ProductDetail from './pages/ProductDetail'
-import Cart from './pages/Cart'
-import PlaceOrder from './pages/PlaceOrder'
-import Order from './pages/Order'
 import { ToastContainer } from 'react-toastify';
-import NotFound from './pages/NotFound'
 import Ai from './component/Ai'
+import ProtectedRoute from './component/ProtectedRoute'
+import Loading from './component/Loading'
+
+// Lazy Load Pages
+const Registration = lazy(() => import('./pages/Registration'));
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const About = lazy(() => import('./pages/About'));
+const Collections = lazy(() => import('./pages/Collections'));
+const Product = lazy(() => import('./pages/Product'));
+const Contact = lazy(() => import('./pages/Contact'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+const Cart = lazy(() => import('./pages/Cart'));
+const PlaceOrder = lazy(() => import('./pages/PlaceOrder'));
+const Order = lazy(() => import('./pages/Order'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
 function App() {
-let {userData} = useContext(userDataContext)
-let location = useLocation()
-  
+  let { userData } = useContext(userDataContext)
+  let location = useLocation()
+
   return (
     <>
-    <ToastContainer />
-    {userData && <Nav/>}
-      <Routes>
+      <ToastContainer />
+      {userData && <Nav />}
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          {/* Public Routes - redirect to home if already logged in */}
+          <Route path='/login'
+            element={userData ? <Navigate to="/" replace /> : <Login />}
+          />
 
-        <Route path='/login' 
-        element={userData ? (<Navigate to={location.state?.from || "/"}/> ) 
-        : (<Login/>)
-          }/>
+          <Route path='/signup'
+            element={userData ? <Navigate to="/" replace /> : <Registration />}
+          />
 
-        <Route path='/signup' 
-        element={userData ? (<Navigate to={location.state?.from || "/"}/> ) 
-        : (<Registration/>)}/>
+          {/* Protected Routes */}
+          <Route path='/' element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          } />
 
-        <Route path='/' 
-        element={userData ? <Home/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
-      
-        <Route path='/about' 
-        element={userData ? <About/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
+          <Route path='/about' element={
+            <ProtectedRoute>
+              <About />
+            </ProtectedRoute>
+          } />
 
-        <Route path='/collection' 
-        element={userData ? <Collections/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
+          <Route path='/collection' element={
+            <ProtectedRoute>
+              <Collections />
+            </ProtectedRoute>
+          } />
 
-        <Route path='/product' 
-        element={userData ? <Product/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
+          <Route path='/product' element={
+            <ProtectedRoute>
+              <Product />
+            </ProtectedRoute>
+          } />
 
-        <Route path='/contact' 
-        element={userData ? <Contact/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
-        <Route path='/productdetail/:productId' 
-        element={userData ? <ProductDetail/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
+          <Route path='/contact' element={
+            <ProtectedRoute>
+              <Contact />
+            </ProtectedRoute>
+          } />
 
-        <Route path='/cart' 
-        element={userData ? <Cart/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
+          <Route path='/productdetail/:productId' element={
+            <ProtectedRoute>
+              <ProductDetail />
+            </ProtectedRoute>
+          } />
 
-          <Route path='/placeorder' 
-        element={userData ? <PlaceOrder/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
-         <Route path='/order' 
-        element={userData ? <Order/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
+          <Route path='/cart' element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          } />
 
-        <Route path='*' element={<NotFound/>}/>
-      </Routes>
-      <Ai/>
+          <Route path='/placeorder' element={
+            <ProtectedRoute>
+              <PlaceOrder />
+            </ProtectedRoute>
+          } />
+
+          <Route path='/order' element={
+            <ProtectedRoute>
+              <Order />
+            </ProtectedRoute>
+          } />
+
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Suspense>
+      <Ai />
     </>
   )
 }

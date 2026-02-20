@@ -13,10 +13,10 @@ function BestSeller() {
   }, [products])
 
   return (
-    <div className='py-8 bg-[#EFE9E4]'>
+    <div className='py-8 bg-base'>
       <div className='h-[8%] w-full text-center'>
         <Title text1={"BEST"} text2={"SELLER"} />
-        <p className='w-full max-w-xl m-auto text-base text-blue-300 mt-2 px-4'>
+        <p className='w-full max-w-xl m-auto text-base text-secondary mt-2 px-4'>
           Tried, Tested, Loved – Discover Our All-Time Best Sellers.
         </p>
       </div>
