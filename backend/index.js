@@ -29,15 +29,22 @@ const app = express()
 app.use(express.json({ limit: '10mb' }))
 app.use(cookieParser())
 app.enable('trust proxy'); // Important for Vercel/proxies to correctly handle req.secure and cookies
+
+const allowedOrigins = [
+  "https://ecom-peach-nine.vercel.app",
+  "https://ecom-phi-cyan.vercel.app",
+  "https://ecom-2gq4.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:5174"
+];
+
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL.replace(/\/$/, ""));
+}
+
 app.use(
   cors({
-    origin: [
-      "https://ecom-peach-nine.vercel.app",
-      "https://ecom-phi-cyan.vercel.app",
-      "http://localhost:5173",
-      "http://localhost:5174",
-      process.env.FRONTEND_URL // Allow frontend URL from env
-    ].filter(Boolean), // Filter out undefined if env var is not set
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
