@@ -35,7 +35,7 @@ function Order() {
   }, [loadOrderData])
 
   return (
-    <div className='w-full min-h-[100vh] p-6 pb-[150px] bg-base'>
+    <div className='w-full min-h-[100vh] p-6 pb-32 bg-base'>
       <div className='w-full text-center mt-20'>
         <Title text1={'MY'} text2={'ORDER'} />
       </div>
@@ -51,7 +51,7 @@ function Order() {
                   <p>Quantity: {item.quantity}</p>
                   <p>Size: {item.size}</p>
                 </div>
-                <div className="mt-2 text-sm text-gray-500 flex flex-col gap-1">
+                <div className="mt-2 text-sm text-secondary font-medium flex flex-col gap-1">
                   <p>Date: <span className='text-primary font-medium'>{new Date(item.date).toDateString()}</span></p>
                   <p>Payment Method: <span className='font-medium text-primary'>{item.paymentMethod}</span></p>
                 </div>

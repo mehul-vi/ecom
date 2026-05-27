@@ -5,7 +5,7 @@ import NewLetterBox from '../component/NewLetterBox'
 
 function About() {
   return (
-    <div className='w-full min-h-[100vh] flex items-center justify-center flex-col bg-base gap-10 pt-20 px-8'>
+    <div className='w-full min-h-[100vh] flex items-center justify-center flex-col bg-base gap-10 pt-24 pb-28 px-4 sm:px-8'>
       <Title text1={'ABOUT'} text2={'US'} />
       <div className='w-full flex flex-col lg:flex-row items-center justify-center gap-12'>
         <div className='lg:w-1/2 w-full flex items-center justify-center'>
@@ -30,19 +30,19 @@ function About() {
         <div className='w-4/5 flex flex-col lg:flex-row justify-between gap-8 py-10'>
           <div className='lg:w-1/3 w-full bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] p-8 text-primary flex flex-col items-center gap-4 border border-border'>
             <b className='text-2xl font-semibold text-secondary'>Quality Assurance</b>
-            <p className='text-base leading-relaxed text-gray-500 text-center'>
+            <p className='text-base leading-relaxed text-secondary font-medium text-center'>
               We guarantee quality through strict checks, reliable sourcing, and a commitment to customer satisfaction always.
             </p>
           </div>
           <div className='lg:w-1/3 w-full bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] p-8 text-primary flex flex-col items-center gap-4 border border-border'>
             <b className='text-2xl font-semibold text-secondary'>Convenience</b>
-            <p className='text-base leading-relaxed text-gray-500 text-center'>
+            <p className='text-base leading-relaxed text-secondary font-medium text-center'>
               Shop easily with fast delivery, simple navigation, secure checkout, and everything you need in one place.
             </p>
           </div>
           <div className='lg:w-1/3 w-full bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] p-8 text-primary flex flex-col items-center gap-4 border border-border'>
             <b className='text-2xl font-semibold text-secondary'>Exceptional Customer Service</b>
-            <p className='text-base leading-relaxed text-gray-500 text-center'>
+            <p className='text-base leading-relaxed text-secondary font-medium text-center'>
               Our dedicated support team ensures quick responses, helpful solutions, and a smooth shopping experience every time.
             </p>
           </div>

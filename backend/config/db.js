@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const connectDb = async () => {
     try {
-        const conn = await mongoose.connect("mongodb+srv://mehulkumar:mehul123456@cluster0.1crzlqs.mongodb.net/?appName=Cluster0");
+        const mongoUri = process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/Ecommerce";
+        const conn = await mongoose.connect(mongoUri);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
 
         mongoose.connection.on('error', err => {

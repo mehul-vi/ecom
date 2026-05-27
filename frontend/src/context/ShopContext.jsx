@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { authDataContext } from './AuthContext'
 import axios from 'axios'
 import { userDataContext } from './UserContext'
@@ -17,7 +17,7 @@ function ShopContext({children}) {
     let currency = '₹';
     let delivery_fee = 40;
 
-    const getProducts = async () => {
+    const getProducts = useCallback(async () => {
         try {
             let result = await axios.get(serverUrl + "/api/product/list")
             console.log(result.data)
@@ -26,7 +26,7 @@ function ShopContext({children}) {
             console.log(error)
         }
         
-    }
+    }, [serverUrl])
 
 
     const addtoCart = async (itemId , size) => {
@@ -73,7 +73,7 @@ function ShopContext({children}) {
     }
 
 
-    const getUserCart = async () => {
+    const getUserCart = useCallback(async () => {
       try {
         const result = await axios.post(serverUrl + '/api/cart/get',{},{ withCredentials: true })
 
@@ -85,7 +85,7 @@ function ShopContext({children}) {
 
     }
       
-    }
+    }, [serverUrl])
     const updateQuantity = async (itemId , size , quantity) => {
       let cartData = structuredClone(cartItem);
     cartData[itemId][size] = quantity

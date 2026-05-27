@@ -33,27 +33,39 @@ function Registration() {
         toast.error("Registration succeeded but session failed.")
       }
       setLoading(false)
-    } catch {
+    } catch (error) {
       setLoading(false)
-      toast.error("User Registration Failed")
+      console.error("Registration Error:", error)
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message)
+      } else if (error.request) {
+        toast.error("Registration Failed: No response from server. Check connection.")
+      } else {
+        toast.error("Registration Failed: " + error.message)
+      }
     }
   }
 
   const googleSignup = async () => {
     try {
+      setLoading(true)
       const response = await signInWithPopup(auth, provider)
       let user = response.user
       let name = user.displayName;
       let email = user.email
       await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
       const success = await getCurrentUser()
+      setLoading(false)
       if (success) {
         toast.success("User Registration Successful")
+        navigate("/")
       } else {
         toast.error("Google Signup succeeded but session failed.")
       }
-    } catch {
-      toast.error("User Registration Failed")
+    } catch (err) {
+      setLoading(false)
+      console.error("Google Signup Error:", err)
+      toast.error("Google Signup Failed: " + (err.message || "Something went wrong"))
     }
   }
 
@@ -75,19 +87,19 @@ function Registration() {
             Registration with Google
           </div>
 
-          <div className='flex items-center justify-center gap-4 text-sm text-gray-400'>
+          <div className='flex items-center justify-center gap-4 text-sm text-secondary/80 font-medium'>
             <div className='flex-grow h-[1px] bg-gray-300'></div> OR <div className='flex-grow h-[1px] bg-gray-300'></div>
           </div>
 
-          <input type="text" required placeholder='UserName' className='w-full h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary font-semibold placeholder:text-gray-400'
+          <input type="text" required placeholder='UserName' className='w-full h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary font-semibold placeholder:text-secondary/60'
             onChange={(e) => setName(e.target.value)} value={name} />
-          <input type="email" required placeholder='Email' className='w-full h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary font-semibold placeholder:text-gray-400'
+          <input type="email" required placeholder='Email' className='w-full h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary font-semibold placeholder:text-secondary/60'
             onChange={(e) => setEmail(e.target.value)} value={email} />
           <div className='relative'>
-            <input type={show ? "text" : "password"} required placeholder='Password' className='w-full h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary font-semibold placeholder:text-gray-400'
+            <input type={show ? "text" : "password"} required placeholder='Password' className='w-full h-12 px-4 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-secondary text-primary font-semibold placeholder:text-secondary/60'
               onChange={(e) => setPassword(e.target.value)} value={password} />
-            {!show && <IoEyeOutline className='absolute right-4 top-3.5 cursor-pointer text-gray-500' onClick={() => setShow(true)} />}
-            {show && <IoEye className='absolute right-4 top-3.5 cursor-pointer text-gray-500' onClick={() => setShow(false)} />}
+            {!show && <IoEyeOutline className='absolute right-4 top-3.5 cursor-pointer text-secondary' onClick={() => setShow(true)} />}
+            {show && <IoEye className='absolute right-4 top-3.5 cursor-pointer text-secondary' onClick={() => setShow(false)} />}
           </div>
 
           <button type='submit' disabled={loading} className='w-full h-12 bg-primary text-white rounded-full font-semibold hover:bg-secondary transition flex items-center justify-center'>

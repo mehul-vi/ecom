@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { authDataContext } from './AuthContext'  // 👈 Make sure file name matches exactly
 import axios from 'axios'
 
@@ -9,7 +9,7 @@ function UserContext({ children }) {
   const [isLoading, setIsLoading] = useState(true)
   const { serverUrl } = useContext(authDataContext)
 
-  const getCurrentUser = async () => {
+  const getCurrentUser = useCallback(async () => {
     try {
       const result = await axios.get(`${serverUrl}/api/user/getcurrentuser`, {
         withCredentials: true,
@@ -24,7 +24,7 @@ function UserContext({ children }) {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [serverUrl])
 
   useEffect(() => {
     getCurrentUser()

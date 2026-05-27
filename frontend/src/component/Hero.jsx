@@ -1,41 +1,43 @@
-import React from "react";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Hero({ heroData }) {
+function Hero() {
+  const navigate = useNavigate();
+
   return (
-    <div className="absolute inset-0 flex items-center justify-start px-4 sm:px-8 md:px-[8%] z-20">
-
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent rounded-2xl"></div>
-
-      {/* Animated Text */}
-      <motion.div
-        key={heroData.text1}
-        initial={{ opacity: 0, x: -60 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -60 }}
-        transition={{ duration: 0.8 }}
-        className="relative text-white max-w-xl flex flex-col gap-4 
-                   md:text-left text-center mx-auto md:mx-0"
-      >
-        <p className="text-gray-300 text-lg uppercase tracking-[3px] font-light">
-          {heroData.text1}
-        </p>
-
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.7)] font-outfit">
-          {heroData.text2}
-        </h1>
-
-        <p className="text-gray-200 text-base md:text-lg font-light max-w-md leading-relaxed">
-          Elevate your style with confidence — curated trends just for you.
-        </p>
-
-        {/* Button fixed with text */}
-        <div className="mt-6 flex justify-center md:justify-start">
-          <button className="btn-primary text-lg">
-            Shop Now
-          </button>
+    <div className='flex flex-col md:flex-row border border-border bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] select-none'>
+      {/* Hero Left Panel: Elegant static typography & Call to Action */}
+      <div className='w-full md:w-1/2 flex flex-col items-start justify-center p-8 md:p-16 lg:p-20 bg-white text-primary gap-4'>
+        <div className='flex items-center gap-2'>
+          <p className='w-8 h-[2px] bg-secondary'></p>
+          <p className='font-semibold text-xs md:text-sm text-secondary uppercase tracking-[3px]'>NEW ARRIVALS</p>
         </div>
-      </motion.div>
+        
+        <h1 className='text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-primary uppercase tracking-tight'>
+          Style That Speaks <br />
+          <span className='text-secondary font-semibold normal-case'>Without Words</span>
+        </h1>
+        
+        <p className='text-secondary/80 text-sm md:text-base max-w-md leading-relaxed font-medium mt-1'>
+          Discover our latest curated drops. Modern premium wardrobe essentials crafted with fine cotton, linen, and fleece for exceptional comfort.
+        </p>
+        
+        <button 
+          className='btn-primary mt-4'
+          onClick={() => navigate('/collection')}
+        >
+          Shop Latest Collection
+        </button>
+      </div>
+
+      {/* Hero Right Panel: Premium static fashion imagery */}
+      <div className='w-full md:w-1/2 h-[300px] md:h-[500px]'>
+        <img 
+          src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop&q=80" 
+          alt="Premium Minimalist Apparel" 
+          className='w-full h-full object-cover' 
+        />
+      </div>
     </div>
   );
 }

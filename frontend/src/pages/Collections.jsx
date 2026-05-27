@@ -44,14 +44,14 @@ function Collections() {
     // Apply category filter
     if (category.length > 0) {
       filtered = filtered.filter(item =>
-        category.includes(item.category)
+        category.some(cat => cat.toLowerCase() === item.category.toLowerCase())
       );
     }
 
     // Apply subcategory filter
     if (subCategory.length > 0) {
       filtered = filtered.filter(item =>
-        subCategory.includes(item.subCategory)
+        subCategory.some(sub => sub.toLowerCase() === item.subCategory.toLowerCase())
       );
     }
 
@@ -77,7 +77,7 @@ function Collections() {
     if (sortedProducts.length === 0) {
       return (
         <div className="w-full flex justify-center items-center py-16">
-          <p className="text-xl text-gray-500">No products found matching your criteria.</p>
+          <p className="text-xl text-secondary font-medium">No products found matching your criteria.</p>
         </div>
       );
     }
@@ -101,7 +101,7 @@ function Collections() {
     <div className="w-full min-h-screen bg-base flex md:flex-row flex-col pt-[70px] overflow-x-hidden pb-28">
       {/* Mobile Filter Toggle Button */}
       <button
-        className="md:hidden fixed bottom-6 right-6 z-50 bg-secondary text-white p-4 rounded-full shadow-lg hover:bg-[#7A6D63] transition-colors"
+        className="md:hidden fixed bottom-6 right-6 z-50 bg-secondary text-white p-4 rounded-full shadow-lg hover:bg-slate-700 transition-colors"
         onClick={() => setShowFilter(prev => !prev)}
       >
         {showFilter ? <FaTimes className="text-xl" /> : <FaFilter className="text-xl" />}
@@ -120,7 +120,7 @@ function Collections() {
 
         {/* Desktop Sidebar Toggle */}
         <button
-          className="hidden lg:flex absolute -right-3 top-6 bg-secondary text-white p-2 rounded-full shadow-lg hover:bg-[#7A6D63] transition-colors z-10"
+          className="hidden lg:flex absolute -right-3 top-6 bg-secondary text-white p-2 rounded-full shadow-lg hover:bg-slate-700 transition-colors z-10"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
           {isSidebarOpen ? <FaTimes className="text-sm" /> : <FaBars className="text-sm" />}
@@ -157,7 +157,7 @@ function Collections() {
           md:opacity-100 md:max-h-[500px] md:overflow-visible
         `}>
           <p className="text-xl font-semibold text-primary mb-3">CATEGORIES</p>
-          <div className="flex flex-col gap-3 text-base font-light">
+          <div className="flex flex-col gap-3 text-base font-medium text-secondary">
             {['Men', 'Women', 'Kids'].map((cat) => (
               <label key={cat} className="flex items-center gap-3 cursor-pointer hover:text-primary transition-colors">
                 <input
@@ -181,7 +181,7 @@ function Collections() {
           md:opacity-100 md:max-h-[500px] md:overflow-visible
         `}>
           <p className="text-xl font-semibold text-primary mb-3">SUB-CATEGORIES</p>
-          <div className="flex flex-col gap-3 text-base font-light">
+          <div className="flex flex-col gap-3 text-base font-medium text-secondary">
             {['TopWear', 'BottomWear', 'WinterWear'].map((subCat) => (
               <label key={subCat} className="flex items-center gap-3 cursor-pointer hover:text-primary transition-colors">
                 <input
@@ -204,7 +204,7 @@ function Collections() {
           md:opacity-100 md:max-h-[100px] md:overflow-visible
         `}>
           <button
-            className="w-full bg-secondary text-white py-3 px-4 rounded-xl hover:bg-[#7A6D63] transition-colors font-medium"
+            className="w-full bg-secondary text-white py-3 px-4 rounded-xl hover:bg-slate-700 transition-colors font-medium"
             onClick={() => {
               setCategory([]);
               setSubCategory([]);
@@ -216,14 +216,14 @@ function Collections() {
       </div>
 
       {/* Main Content */}
-      <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'lg:pl-[20%]' : 'lg:pl-4'} md:py-3`}>
+      <div className="flex-1 transition-all duration-300 md:py-3 px-4 md:px-8">
 
         {/* Header with Toggle Button for Desktop */}
         <div className="flex items-center justify-between px-4 md:px-8 py-5">
           <div className="flex items-center gap-4">
             {/* Desktop Toggle Button */}
             <button
-              className="hidden lg:flex bg-secondary text-white p-3 rounded-xl hover:bg-[#7A6D63] transition-colors"
+              className="hidden lg:flex bg-secondary text-white p-3 rounded-xl hover:bg-slate-700 transition-colors"
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             >
               {isSidebarOpen ? <FaTimes className="text-lg" /> : <FaBars className="text-lg" />}
@@ -258,7 +258,7 @@ function Collections() {
                 </span>
               ))}
               {subCategory.map(subCat => (
-                <span key={subCat} className="bg-[#7A6D63] text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                <span key={subCat} className="bg-slate-600 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
                   {subCat}
                   <button
                     onClick={() => setSubCategory(prev => prev.filter(item => item !== subCat))}

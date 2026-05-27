@@ -103,14 +103,21 @@ function PlaceOrder() {
           break;
       }
     } catch (error) {
-      console.log(error)
+      console.error("Place Order Error:", error)
       setLoading(false)
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message)
+      } else if (error.request) {
+        toast.error("Failed to place order: No response from server. Check connection.")
+      } else {
+        toast.error("Failed to place order: " + error.message)
+      }
     }
   }
 
   return (
-    <div className='w-full min-h-[100vh] bg-base flex flex-col md:flex-row items-center justify-center gap-12 p-8 pt-20'>
-      <div className='lg:w-1/2 w-full'>
+    <div className='w-full min-h-[100vh] bg-base flex flex-col lg:flex-row items-start justify-center gap-12 p-4 sm:p-8 pt-24 pb-28 max-w-7xl mx-auto'>
+      <div className='lg:w-1/2 w-full max-w-2xl lg:max-w-none mx-auto'>
         <form onSubmit={onSubmitHandler} className='bg-white p-8 rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-border'>
           <Title text1={'DELIVERY'} text2={'INFORMATION'} />
           <div className='grid grid-cols-2 gap-6 mt-6'>
@@ -130,7 +137,7 @@ function PlaceOrder() {
           </button>
         </form>
       </div>
-      <div className='lg:w-1/2 w-full flex flex-col items-center gap-8'>
+      <div className='lg:w-1/2 w-full max-w-2xl lg:max-w-none mx-auto flex flex-col items-center gap-8'>
         <CartTotal />
         <div className="w-full lg:max-w-md">
           <Title text1={'PAYMENT'} text2={'METHOD'} />
@@ -138,7 +145,7 @@ function PlaceOrder() {
             <button onClick={() => setMethod('razorpay')} className={`w-[150px] h-[60px] rounded-xl border-2 flex items-center justify-center p-2 bg-white transition-all ${method === 'razorpay' ? 'border-secondary shadow-md scale-105' : 'border-border hover:border-gray-400'}`}>
               <img src={razorpay} alt="Razorpay" className='h-full object-contain' />
             </button>
-            <button onClick={() => setMethod('cod')} className={`w-[180px] h-[60px] rounded-xl border-2 flex items-center justify-center font-bold text-sm transition-all ${method === 'cod' ? 'border-secondary bg-secondary text-white shadow-md scale-105' : 'border-border bg-white text-gray-500 hover:border-gray-400'}`}>
+            <button onClick={() => setMethod('cod')} className={`w-[180px] h-[60px] rounded-xl border-2 flex items-center justify-center font-bold text-sm transition-all ${method === 'cod' ? 'border-secondary bg-secondary text-white shadow-md scale-105' : 'border-border bg-white text-secondary/70 hover:text-secondary hover:border-gray-400'}`}>
               CASH ON DELIVERY
             </button>
           </div>

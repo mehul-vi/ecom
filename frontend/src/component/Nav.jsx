@@ -29,26 +29,26 @@ function Nav() {
   };
 
   return (
-    <div className="w-full h-[70px] bg-base fixed top-0 flex items-center justify-between px-8 shadow-sm z-30 border-b border-border transition-all duration-300">
+    <div className="w-full h-[70px] bg-white border-b border-border/80 fixed top-0 flex items-center justify-between px-6 md:px-12 z-30 transition-all duration-300">
 
-      {/* Logo Section */}
-      <div className="flex items-center gap-3">
-        <img src={logo} alt="Logo" className="w-10 drop-shadow-sm" />
-        <h1 className="text-3xl font-bold text-primary tracking-tight">EZ Cart</h1>
+      {/* Left: Brand Logo */}
+      <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate("/")}>
+        <img src={logo} alt="Logo" className="w-8 h-8 object-contain hover:scale-105 transition-all" />
+        <h1 className="text-xl font-black text-primary tracking-[0.2em] hover:text-secondary transition-colors">EZ CART</h1>
       </div>
 
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center gap-6 text-primary font-medium">
-        <ul className="flex items-center gap-6 text-lg">
-          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out" onClick={() => navigate("/")}>Home</li>
-          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out" onClick={() => navigate("/collection")}>Collections</li>
-          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out" onClick={() => navigate("/about")}>About</li>
-          <li className="cursor-pointer px-5 py-2 rounded-full hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out" onClick={() => navigate("/contact")}>Contact</li>
+      {/* Center: Desktop Navigation links */}
+      <div className="hidden md:flex items-center text-primary font-semibold">
+        <ul className="flex items-center gap-2 text-sm uppercase tracking-[0.15em]">
+          <li className="cursor-pointer px-4 py-1.5 rounded-full hover:bg-secondary/10 hover:text-secondary transition-all duration-200" onClick={() => navigate("/")}>Home</li>
+          <li className="cursor-pointer px-4 py-1.5 rounded-full hover:bg-secondary/10 hover:text-secondary transition-all duration-200" onClick={() => navigate("/collection")}>Collections</li>
+          <li className="cursor-pointer px-4 py-1.5 rounded-full hover:bg-secondary/10 hover:text-secondary transition-all duration-200" onClick={() => navigate("/about")}>About</li>
+          <li className="cursor-pointer px-4 py-1.5 rounded-full hover:bg-secondary/10 hover:text-secondary transition-all duration-200" onClick={() => navigate("/contact")}>Contact</li>
         </ul>
       </div>
 
-      {/* Right Icons */}
-      <div className="flex items-center gap-6 text-primary relative">
+      {/* Right: Actions */}
+      <div className="flex items-center justify-end gap-6 text-primary relative">
         {/* Search Toggle */}
         {!showSearch ? (
           <IoSearchCircleOutline className="w-10 h-10 cursor-pointer hover:text-secondary transition-all" onClick={() => { setShowSearch(true); navigate("/collection"); }} />
@@ -99,11 +99,11 @@ function Nav() {
 
       {/* Search Input */}
       {showSearch && (
-        <div className="absolute top-full left-0 right-0 bg-base p-4 shadow-inner border-t border-border">
+        <div className="absolute top-full left-0 right-0 bg-white border-b border-border p-4 shadow-sm z-20">
           <input
             type="text"
-            className="w-full max-w-4xl mx-auto rounded-full bg-white p-3 placeholder:text-gray-400 text-primary text-lg focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
-            placeholder="Search here..."
+            className="w-full max-w-4xl mx-auto rounded-full bg-base border border-border p-3.5 placeholder:text-gray-400 text-primary text-base focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
+            placeholder="Search for apparel, collection items, or tags..."
             onChange={(e) => setSearch(e.target.value)}
             value={search}
           />

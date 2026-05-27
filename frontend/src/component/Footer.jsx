@@ -10,14 +10,14 @@ function Footer() {
             <img src={logo} alt="OneCart" className='md:w-[40px] md:h-[40px] w-[30px] h-[30px]' />
             <p className='md:text-xl text-lg font-semibold text-white'>OneCart</p>
           </div>
-          <p className='md:block hidden text-base text-gray-300'>
+          <p className='md:block hidden text-base text-slate-200'>
             OneCart is your all-in-one online shopping destination, offering top-quality products, unbeatable deals, and fast delivery—all backed by trusted service.
           </p>
-          <p className='md:hidden text-base text-gray-300'>Fast. Easy. Reliable. OneCart Shopping</p>
+          <p className='md:hidden text-base text-slate-200'>Fast. Easy. Reliable. OneCart Shopping</p>
         </div>
         <div className='md:w-[25%] w-[45%] flex flex-col items-start gap-3'>
           <p className='text-xl font-semibold text-white'>COMPANY</p>
-          <ul className='text-base space-y-2 text-gray-300'>
+          <ul className='text-base space-y-2 text-slate-200'>
             <li className='cursor-pointer hover:text-secondary transition-colors'>Home</li>
             <li className='cursor-pointer hover:text-secondary transition-colors'>About us</li>
             <li className='cursor-pointer hidden md:block hover:text-secondary transition-colors'>Delivery</li>
@@ -26,7 +26,7 @@ function Footer() {
         </div>
         <div className='md:w-[25%] w-[45%] flex flex-col items-start gap-3'>
           <p className='text-xl font-semibold text-white'>GET IN TOUCH</p>
-          <ul className='text-base space-y-2 text-gray-300'>
+          <ul className='text-base space-y-2 text-slate-200'>
             <li>+91-9876543210</li>
             <li>contact@onecart.com</li>
             <li className='hidden md:block'>+1-123-456-7890</li>
@@ -35,7 +35,7 @@ function Footer() {
         </div>
       </div>
       <div className='w-full h-[1px] bg-gray-700 my-4'></div>
-      <div className='w-full text-gray-400 flex items-center justify-center font-medium text-sm'>
+      <div className='w-full text-slate-400 flex items-center justify-center font-medium text-sm'>
         Copyright 2025 @ezcart.com - All Rights Reserved
       </div>
     </div>

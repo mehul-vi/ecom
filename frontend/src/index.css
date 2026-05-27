@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0F0F0F;
-  --color-secondary: #9B8C80;
-  --color-base: #EFE9E4;
+  --color-primary: #000000;
+  --color-secondary: #2D3748;
+  --color-base: #F5F5F7;
   --color-surface: #FFFFFF;
-  --color-border: #E6D9CF;
+  --color-border: #CBD5E1;
 
   --font-outfit: "Outfit", sans-serif;
 }
@@ -27,6 +27,10 @@
   }
 
   .card-hover {
-    @apply transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl;
+    @apply transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(155,140,128,0.15)] border-secondary/20;
+  }
+
+  .nav-glass {
+    @apply backdrop-blur-md bg-white/70 border-b border-border/80 shadow-[0_4px_30px_rgba(0,0,0,0.02)];
   }
 }

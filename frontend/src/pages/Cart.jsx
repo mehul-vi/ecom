@@ -27,7 +27,7 @@ function Cart() {
   }, [cartItem]);
 
   return (
-    <div className='w-full min-h-[100vh] p-6 bg-base mt-20'>
+    <div className='w-full min-h-[100vh] p-6 pb-28 bg-base mt-20'>
       <div className='h-[8%] w-full text-center'>
         <Title text1={'YOUR'} text2={'CART'} />
       </div>
@@ -43,7 +43,7 @@ function Cart() {
 
               return (
                 <div key={index} className='w-full border border-border rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] bg-white p-4 flex flex-col md:flex-row items-center gap-6'>
-                  <img className='w-full md:w-[100px] h-[100px] rounded-2xl object-cover' src={productData?.image1 || '/placeholder.png'} alt={productData?.name || 'Product'} />
+                  <img className='w-[100px] h-[100px] mx-auto md:mx-0 rounded-2xl object-cover' src={productData?.image1 || '/placeholder.png'} alt={productData?.name || 'Product'} />
                   <div className='flex flex-col justify-center gap-2 flex-grow text-center md:text-left'>
                     <p className='text-2xl font-semibold text-primary'>{productData?.name}</p>
                     <div className='flex items-center justify-center md:justify-start gap-4'>
@@ -66,7 +66,7 @@ function Cart() {
               )
             })
           ) : (
-            <div className="text-center mt-20 text-gray-700">
+            <div className="text-center mt-20 text-secondary font-medium">
               <p className="text-xl mb-4">Your cart is empty</p>
               <button
                 className="px-6 py-3 bg-secondary text-white font-semibold rounded-full hover:bg-primary transition-all duration-300"

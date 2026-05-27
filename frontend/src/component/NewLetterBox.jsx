@@ -7,7 +7,7 @@ function NewLetterBox() {
   return (
     <div className='w-full h-[40vh] bg-primary flex flex-col items-center justify-center gap-4 text-center'>
       <p className='md:text-3xl text-xl text-white font-semibold px-6'>Subscribe now & get 20% off</p>
-      <p className='md:text-lg text-sm text-center text-gray-300 font-semibold px-6 max-w-xl'>
+      <p className='md:text-lg text-sm text-center text-slate-200 font-semibold px-6 max-w-xl'>
         Subscribe now and enjoy exclusive savings, special deals, and early access to new collections.
       </p>
       <form onSubmit={handleSubmit} className='flex items-center justify-center gap-4 px-6 w-full max-w-4xl flex-wrap sm:flex-nowrap'>
