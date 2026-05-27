@@ -12,8 +12,11 @@ import orderRoutes from './routes/orderRoutes.js'
 
 dotenv.config()
 
-const requiredEnvVars = ['MONGODB_URL', 'JWT_SECRET', 'CLOUDINARY_NAME'];
+const requiredEnvVars = ['JWT_SECRET', 'CLOUDINARY_NAME'];
 const missingEnvVars = requiredEnvVars.filter(key => !process.env[key]);
+if (!process.env.MONGODB_URL && !process.env.MONGODB_URI) {
+  missingEnvVars.push('MONGODB_URL/MONGODB_URI');
+}
 if (missingEnvVars.length > 0) {
   console.warn(`WARNING: Missing environment variables: ${missingEnvVars.join(', ')}`);
 }
