@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import Title from '../component/Title'
 import CartTotal from '../component/CartTotal'
-import razorpay from '../assets/Razorpay.jpg'
 import { shopDataContext } from '../context/ShopContext'
 import { authDataContext } from '../context/AuthContext'
 import axios from 'axios'
@@ -33,33 +32,6 @@ function PlaceOrder() {
     setFormData(data => ({ ...data, [name]: value }))
   }
 
-  const initPay = (order) => {
-    const options = {
-      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-      amount: order.amount,
-      currency: order.currency,
-      name: 'Order Payment',
-      description: 'Order Payment',
-      order_id: order.id,
-      receipt: order.receipt,
-      handler: async (response) => {
-        try {
-          const { data } = await axios.post(serverUrl + '/api/order/verifyrazorpay', response, { withCredentials: true })
-          if (data) {
-            toast.success("Payment Successful!")
-            navigate("/order")
-            setCartItem({})
-          }
-        } catch (error) {
-          console.error("Payment Verification Error:", error)
-          toast.error("Payment Verification Failed")
-        }
-      }
-    }
-    const rzp = new window.Razorpay(options)
-    rzp.open()
-  }
-
   const onSubmitHandler = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -82,31 +54,18 @@ function PlaceOrder() {
         items: orderItems,
         amount: getCartAmount() + delivery_fee
       }
-      switch (method) {
-        case 'cod': {
-          const result = await axios.post(serverUrl + "/api/order/placeorder", orderData, { withCredentials: true })
-          if (result.data) {
-            setCartItem({})
-            toast.success("Order Placed")
-            navigate("/order")
-            setLoading(false)
-          } else {
-            toast.error("Order Placed Error")
-            setLoading(false)
-          }
-          break;
+      
+      if (method === 'cod') {
+        const result = await axios.post(serverUrl + "/api/order/placeorder", orderData, { withCredentials: true })
+        if (result.data) {
+          setCartItem({})
+          toast.success("Order Placed")
+          navigate("/order")
+          setLoading(false)
+        } else {
+          toast.error("Order Placed Error")
+          setLoading(false)
         }
-        case 'razorpay': {
-          const resultRazorpay = await axios.post(serverUrl + "/api/order/razorpay", orderData, { withCredentials: true })
-          if (resultRazorpay.data) {
-            initPay(resultRazorpay.data)
-            toast.success("Order Placed")
-            setLoading(false)
-          }
-          break;
-        }
-        default:
-          break;
       }
     } catch (error) {
       console.error("Place Order Error:", error)
@@ -148,9 +107,6 @@ function PlaceOrder() {
         <div className="w-full lg:max-w-md">
           <Title text1={'PAYMENT'} text2={'METHOD'} />
           <div className='flex gap-4 mt-4 justify-center'>
-            <button onClick={() => setMethod('razorpay')} className={`w-[150px] h-[60px] rounded-xl border-2 flex items-center justify-center p-2 bg-white transition-all ${method === 'razorpay' ? 'border-secondary shadow-md scale-105' : 'border-border hover:border-gray-400'}`}>
-              <img src={razorpay} alt="Razorpay" className='h-full object-contain' />
-            </button>
             <button onClick={() => setMethod('cod')} className={`w-[180px] h-[60px] rounded-xl border-2 flex items-center justify-center font-bold text-sm transition-all ${method === 'cod' ? 'border-secondary bg-secondary text-white shadow-md scale-105' : 'border-border bg-white text-secondary/70 hover:text-secondary hover:border-gray-400'}`}>
               CASH ON DELIVERY
             </button>

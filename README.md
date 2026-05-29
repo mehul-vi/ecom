@@ -1,6 +1,6 @@
 # 🛒 EZ Cart - Modern E-Commerce Hub
 
-EZ Cart is a state-of-the-art, full-stack e-commerce application powered by the MERN stack (**MongoDB, Express, React, Node.js**). It features a sleek customer shopping storefront, a robust administrative dashboard, Google OAuth authentication, automatic voice control/AI search assistance, Cloudinary image integration, and secure Razorpay payment processing.
+EZ Cart is a state-of-the-art, full-stack e-commerce application powered by the MERN stack (**MongoDB, Express, React, Node.js**). It features a sleek customer shopping storefront, a robust administrative dashboard, Google OAuth authentication, automatic voice control/AI search assistance, and Cloudinary image integration.
 
 ---
 
@@ -21,13 +21,12 @@ EZ Cart is a state-of-the-art, full-stack e-commerce application powered by the 
 
 ### 👑 Admin Control Panel
 *   **Catalog Management:** Add new items with multi-image Cloudinary upload, descriptions, prices, categories, and size charts.
-*   **Order Supervision:** Track every checkout, update delivery statuses, and monitor payment states (COD/Razorpay).
+*   **Order Supervision:** Track every checkout, update delivery statuses, and monitor payment states (COD).
 *   **Admin Login:** Custom protected credential checkpoint with administrative JWT signing.
 
 ### 🛡️ Backend API & Security
 *   **Secure Cookie Authentication:** JWT tokens signed and delivered via `httpOnly`, `secure`, and `sameSite` cookies to protect against XSS and CSRF.
 *   **File Stream Storage:** Integration with **Multer** and **Cloudinary** for lightning-fast image uploads.
-*   **Payment Verification:** Direct webhook/handler verification for Razorpay transactions to protect against tampering.
 
 ---
 
@@ -36,7 +35,7 @@ EZ Cart is a state-of-the-art, full-stack e-commerce application powered by the 
 *   **Front-End:** React 19 (Vite), TailwindCSS, React Router DOM, React Icons, React Toastify, Firebase Auth.
 *   **Back-End:** Node.js, Express, Cookie Parser, CORS, JSON Web Tokens (JWT).
 *   **Database:** MongoDB, Mongoose ODM.
-*   **Cloud Integrations:** Cloudinary (Media hosting), Razorpay (Payment gateway).
+*   **Cloud Integrations:** Cloudinary (Media hosting).
 *   **Hosting:** Fully configured for **Vercel** serverless functions and SPA routing rewrites.
 
 ---
@@ -76,15 +75,12 @@ ADMIN_PASSWORD = "admin-password"
 CLOUDINARY_NAME = "your-cloudinary-name"
 CLOUDINARY_API_KEY = "your-cloudinary-api-key"
 CLOUDINARY_API_SECRET = "your-cloudinary-api-secret"
-RAZORPAY_KEY_ID = "your-razorpay-key-id"
-RAZORPAY_KEY_SECRET = "your-razorpay-key-secret"
 ```
 
 ### 3. Configure Frontend environment
 Navigate to the `frontend/` directory and create a `.env` file:
 ```env
 VITE_BACKEND_URL = http://localhost:8000
-VITE_RAZORPAY_KEY_ID = your-razorpay-test-key-id
 ```
 
 ### 4. Install Dependencies & Run
@@ -115,7 +111,7 @@ Start both components in separate terminal instances:
 
 The project includes an optimized `vercel.json` file at the root to handle unified serverless hosting:
 
-1.  **Configure Environment Variables:** Add your backend `.env` variables and `VITE_RAZORPAY_KEY_ID` to Vercel's **Environment Variables** in the project settings.
+1.  **Configure Environment Variables:** Add your backend `.env` variables to Vercel's **Environment Variables** in the project settings.
 2.  **MIME & Fallback Fixes:** The root `vercel.json` automatically configures SPA routing and applies strict `Cross-Origin-Opener-Policy: same-origin-allow-popups` headers to handle cross-origin Firebase popups flawlessly.
 
 ---
