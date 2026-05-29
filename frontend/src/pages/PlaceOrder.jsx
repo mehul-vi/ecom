@@ -43,10 +43,16 @@ function PlaceOrder() {
       order_id: order.id,
       receipt: order.receipt,
       handler: async (response) => {
-        const { data } = await axios.post(serverUrl + '/api/order/verifyrazorpay', response, { withCredentials: true })
-        if (data) {
-          navigate("/order")
-          setCartItem({})
+        try {
+          const { data } = await axios.post(serverUrl + '/api/order/verifyrazorpay', response, { withCredentials: true })
+          if (data) {
+            toast.success("Payment Successful!")
+            navigate("/order")
+            setCartItem({})
+          }
+        } catch (error) {
+          console.error("Payment Verification Error:", error)
+          toast.error("Payment Verification Failed")
         }
       }
     }

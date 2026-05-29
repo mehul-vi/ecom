@@ -102,7 +102,7 @@ export const verifyRazorpay = async (req,res) =>{
             })
         }
         else{
-            res.json({message:'Payment Failed'
+            res.status(400).json({message:'Payment Failed'
             })
         }
     } catch (error) {
