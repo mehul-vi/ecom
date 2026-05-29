@@ -10,7 +10,7 @@
       "destination": "/admin/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!assets/|.*\\.[a-zA-Z0-9]+$).*)",
       "destination": "/frontend/index.html"
     }
   ]
