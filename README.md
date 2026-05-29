@@ -118,4 +118,4 @@ The project includes an optimized `vercel.json` file at the root to handle unifi
 
 ## 📝 License
 
-Distributed under the ISC License. Created with ❤️ by [Mehul Kumar](https://github.com/mehul-vi).
+Distributed under the ISC License. Created with ❤️ by [Mehul Kumar](https://github.com/mehul-vi) (mehulkumars315@gmail.com).
