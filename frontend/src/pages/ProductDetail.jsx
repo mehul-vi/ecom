@@ -31,12 +31,12 @@ function ProductDetail() {
           <div className='lg:w-[20%] flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible w-full'>
             {[productData.image1, productData.image2, productData.image3, productData.image4].map((img, i) => (
               <div key={i} className='w-[80px] h-[80px] flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer border border-border hover:border-secondary transition'>
-                <img src={img} alt={`Thumb ${i}`} className='w-full h-full object-cover' onClick={() => setImage(img)} />
+                <img src={img} alt={`Thumb ${i}`} crossOrigin="anonymous" className='w-full h-full object-cover' onClick={() => setImage(img)} />
               </div>
             ))}
           </div>
           <div className='lg:w-[80%] w-full border border-border rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] overflow-hidden'>
-            <img src={image} alt={productData.name} className='w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover' />
+            <img src={image} alt={productData.name} crossOrigin="anonymous" className='w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover' />
           </div>
         </div>
 

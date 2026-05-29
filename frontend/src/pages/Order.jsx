@@ -43,7 +43,7 @@ function Order() {
         {
           orderData.map((item, index) => (
             <div key={index} className='w-full border border-border rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] p-6 relative flex flex-col md:flex-row gap-6 items-start bg-white transition-all hover:shadow-lg'>
-              <img src={item.image1} alt={item.name} className='w-[130px] h-[130px] rounded-2xl object-cover' />
+              <img src={item.image1} alt={item.name} crossOrigin="anonymous" className='w-[130px] h-[130px] rounded-2xl object-cover' />
               <div className='flex flex-col gap-2 flex-grow'>
                 <p className='text-2xl font-bold'>{item.name}</p>
                 <div className='flex gap-6 flex-wrap text-lg text-secondary font-medium'>

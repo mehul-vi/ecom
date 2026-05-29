@@ -43,7 +43,7 @@ function Cart() {
 
               return (
                 <div key={index} className='w-full border border-border rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] bg-white p-4 flex flex-col md:flex-row items-center gap-6'>
-                  <img className='w-[100px] h-[100px] mx-auto md:mx-0 rounded-2xl object-cover' src={productData?.image1 || '/placeholder.png'} alt={productData?.name || 'Product'} />
+                  <img className='w-[100px] h-[100px] mx-auto md:mx-0 rounded-2xl object-cover' src={productData?.image1 || '/placeholder.png'} alt={productData?.name || 'Product'} crossOrigin="anonymous" />
                   <div className='flex flex-col justify-center gap-2 flex-grow text-center md:text-left'>
                     <p className='text-2xl font-semibold text-primary'>{productData?.name}</p>
                     <div className='flex items-center justify-center md:justify-start gap-4'>

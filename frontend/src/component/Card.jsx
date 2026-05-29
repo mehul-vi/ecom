@@ -27,6 +27,7 @@ function Card({ name, image, id, price }) {
         <img
           src={image}
           alt={name}
+          crossOrigin="anonymous"
           className='w-full h-full object-cover hover:scale-110 transition-transform duration-300'
         />
       </div>
