@@ -14,8 +14,8 @@ function Contact() {
         <div className='lg:w-1/2 w-4/5 flex flex-col items-start gap-6 text-primary'>
           <p className='text-xl font-bold'>Our Store</p>
           <div className='text-lg leading-relaxed'>
-            <p>12345 Random Station</p>
-            <p>Random City, State, India</p>
+            <p>Durg, Chhattisgarh</p>
+            <p>India - 491107</p>
           </div>
           <div className='text-lg leading-relaxed'>
             <p>Tel: +91-9876543210</p>
