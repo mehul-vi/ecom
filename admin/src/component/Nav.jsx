@@ -30,7 +30,7 @@ function Nav() {
         onClick={() => navigate("/")}
       >
         <img src={logo} alt="logo" className="w-10 h-10 rounded-xl shadow" />
-        <h1 className="text-2xl font-bold tracking-tight text-[#3a332d] group-hover:text-[#2c7b89]">EZ Cart</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-[#3a332d] group-hover:text-[#2c7b89]">ZOVO</h1>
       </div>
       <button
         className="text-base rounded-full bg-[#0f0f0f] text-white font-semibold px-6 py-2 transition hover:bg-[#3a332d] shadow active:ring-2 active:ring-[#C8BDB3]"

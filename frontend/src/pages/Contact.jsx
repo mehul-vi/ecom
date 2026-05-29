@@ -21,7 +21,7 @@ function Contact() {
             <p>Tel: +91-9876543210</p>
             <p>Email: mehulkumars315@gmail.com</p>
           </div>
-          <p className='text-xl font-bold mt-6'>Careers at EZ Cart</p>
+          <p className='text-xl font-bold mt-6'>Careers at ZOVO</p>
           <p className='text-lg leading-relaxed'>Learn more about our teams and job openings</p>
           <button className='px-10 py-5 bg-primary text-white rounded-full hover:bg-secondary transition'>
             Explore Jobs

@@ -88,13 +88,13 @@ function Login() {
   return (
     <div className='w-full h-full bg-base text-primary flex flex-col items-center justify-start'>
       <div className='w-full h-[80px] flex items-center px-8 gap-4 cursor-pointer' onClick={() => navigate("/")}>
-        <img className='w-10' src={Logo} alt="OneCart Logo" />
-        <h1 className='text-2xl font-bold'>OneCart</h1>
+        <img className='w-10' src={Logo} alt="ZOVO Logo" />
+        <h1 className='text-2xl font-bold'>ZOVO</h1>
       </div>
 
       <div className='w-full h-[100px] flex flex-col items-center justify-center gap-2'>
         <span className='text-3xl font-semibold'>Login Page</span>
-        <span className='text-lg'>Welcome to OneCart, Place your order</span>
+        <span className='text-lg'>Welcome to ZOVO, Place your order</span>
       </div>
 
       <div className='max-w-xl w-11/12 bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] p-8'>

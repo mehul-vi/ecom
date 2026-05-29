@@ -13,14 +13,14 @@ function About() {
         </div>
         <div className='lg:w-1/2 w-4/5 flex flex-col items-start gap-6 text-primary'>
           <p className='text-lg leading-relaxed'>
-            OneCart born for smart, seamless shopping—created to deliver quality products, trending styles, and everyday essentials in one place. With reliable service, fast delivery, and great value, OneCart makes your online shopping experience simple, satisfying, and stress-free.
+            ZOVO born for smart, seamless shopping—created to deliver quality products, trending styles, and everyday essentials in one place. With reliable service, fast delivery, and great value, ZOVO makes your online shopping experience simple, satisfying, and stress-free.
           </p>
           <p className='text-lg leading-relaxed'>
             Modern shoppers—combining style, convenience, and affordability. Whether it’s fashion, essentials, or trends, we bring everything you need to one trusted platform with fast delivery, easy returns, and a customer-first shopping experience you’ll love.
           </p>
           <p className='text-xl font-semibold mt-4'>Our Mission</p>
           <p className='text-lg leading-relaxed'>
-            Our mission is to redefine online shopping by delivering quality, affordability, and convenience. OneCart connects customers with trusted products and brands, offering a seamless, customer-focused experience that saves time, adds value, and fits every lifestyle and need.
+            Our mission is to redefine online shopping by delivering quality, affordability, and convenience. ZOVO connects customers with trusted products and brands, offering a seamless, customer-focused experience that saves time, adds value, and fits every lifestyle and need.
           </p>
         </div>
       </div>

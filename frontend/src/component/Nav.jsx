@@ -34,7 +34,7 @@ function Nav() {
       {/* Left: Brand Logo */}
       <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate("/")}>
         <img src={logo} alt="Logo" className="w-8 h-8 object-contain hover:scale-105 transition-all" />
-        <h1 className="text-xl font-black text-primary tracking-[0.2em] hover:text-secondary transition-colors">EZ CART</h1>
+        <h1 className="text-xl font-black text-primary tracking-[0.2em] hover:text-secondary transition-colors">ZOVO</h1>
       </div>
 
       {/* Center: Desktop Navigation links */}

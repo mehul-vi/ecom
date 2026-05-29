@@ -1,6 +1,6 @@
-# 🛒 EZ Cart - Modern E-Commerce Hub
+# 🛒 ZOVO - Modern E-Commerce Hub
 
-EZ Cart is a state-of-the-art, full-stack e-commerce application powered by the MERN stack (**MongoDB, Express, React, Node.js**). It features a sleek customer shopping storefront, a robust administrative dashboard, Google OAuth authentication, automatic voice control/AI search assistance, and Cloudinary image integration.
+ZOVO is a state-of-the-art, full-stack e-commerce application powered by the MERN stack (**MongoDB, Express, React, Node.js**). It features a sleek customer shopping storefront, a robust administrative dashboard, Google OAuth authentication, automatic voice control/AI search assistance, and Cloudinary image integration.
 
 ---
 
@@ -70,7 +70,7 @@ Navigate to the `backend/` directory and create a `.env` file:
 PORT = 8000
 MONGODB_URL = "your-mongodb-connection-string"
 JWT_SECRET = "your-jwt-signing-secret"
-ADMIN_EMAIL = "admin@onecart.com"
+ADMIN_EMAIL = "admin@zovo.com"
 ADMIN_PASSWORD = "admin-password"
 CLOUDINARY_NAME = "your-cloudinary-name"
 CLOUDINARY_API_KEY = "your-cloudinary-api-key"

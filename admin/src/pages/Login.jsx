@@ -44,8 +44,8 @@ function Login() {
   return (
     <div className="w-screen min-h-screen bg-[#EFE9E4] text-[#2b2622] flex flex-col items-center">
       <div className="w-full h-20 flex items-center gap-3 px-6">
-        <img className="w-9 h-9" src={logo} alt="OneCart" />
-        <h1 className="text-xl font-semibold">OneCart</h1>
+        <img className="w-9 h-9" src={logo} alt="ZOVO" />
+        <h1 className="text-xl font-semibold">ZOVO</h1>
       </div>
 
       <div className="text-center mt-6 mb-6">
@@ -63,7 +63,7 @@ function Login() {
               id="email"
               type="email"
               className="w-full h-12 rounded-xl bg-[#F5F2EF] border border-[#E6D9CF] focus:outline-none focus:ring-2 focus:ring-[#C8BDB3] px-4 placeholder:text-[#9B8C80]"
-              placeholder="admin@onecart.com"
+              placeholder="admin@zovo.com"
               required
               onChange={(e) => setEmail(e.target.value)}
               value={email}

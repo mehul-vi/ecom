@@ -43,7 +43,7 @@ function Home() {
       <Sidebar />
 
       <div className="lg:ml-[320px] md:ml-[240px] px-4 md:px-8 pt-24 pb-16">
-        <h1 className="text-3xl md:text-4xl font-semibold text-[#3a332d] mb-8">OneCart Admin</h1>
+        <h1 className="text-3xl md:text-4xl font-semibold text-[#3a332d] mb-8">ZOVO Admin</h1>
         <div className="flex flex-col md:flex-row gap-6">
           <StatCard label="Total Products" value={totalProducts} />
           <StatCard label="Total Orders" value={totalOrders} />
