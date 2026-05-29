@@ -65,7 +65,8 @@ function Registration() {
     } catch (err) {
       setLoading(false)
       console.error("Google Signup Error:", err)
-      toast.error("Google Signup Failed: " + (err.message || "Something went wrong"))
+      const errMsg = err.response?.data?.message || err.message || "Something went wrong";
+      toast.error("Google Signup Failed: " + errMsg)
     }
   }
 

@@ -80,7 +80,8 @@ function Login() {
     } catch (err) {
       setLoading(false);
       console.error("Google Login Error:", err)
-      toast.error("Google Login Failed: " + err.message || "Something went wrong")
+      const errMsg = err.response?.data?.message || err.message || "Something went wrong";
+      toast.error("Google Login Failed: " + errMsg)
     }
   }
 
