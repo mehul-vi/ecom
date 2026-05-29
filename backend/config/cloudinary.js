@@ -10,18 +10,19 @@ const uploadOnCloudinary = async (filePath) => {
     });
     try {
         if(!filePath){
-        return null
-    }
-    const uploadResult = await cloudinary.uploader.upload
-    (filePath)
-    fs.unlinkSync(filePath)
-    return uploadResult.secure_url
-
-    
-        
+            return null
+        }
+        const uploadResult = await cloudinary.uploader.upload(filePath)
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath)
+        }
+        return uploadResult.secure_url
     } catch (error) {
-        fs.unlinkSync(filePath)
-        console.log(error)
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath)
+        }
+        console.error("Cloudinary upload failed:", error)
+        return null
     }
     
 }

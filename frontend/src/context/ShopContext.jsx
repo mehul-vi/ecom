@@ -79,10 +79,9 @@ function ShopContext({children}) {
 
       setCartItem(result.data)
     } catch (error) {
-      console.log(error)
-     
-
-
+      if (error.response?.status !== 401) {
+        console.log(error)
+      }
     }
       
     }, [serverUrl])

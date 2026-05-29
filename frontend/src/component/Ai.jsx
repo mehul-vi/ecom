@@ -8,7 +8,6 @@ function Ai() {
   let { showSearch, setShowSearch } = useContext(shopDataContext)
   let navigate = useNavigate()
   let [activeAi, setActiveAi] = useState(false)
-  let openingSound = new Audio(open)
 
   function speak(message) {
     let utterence = new SpeechSynthesisUtterance(message)
@@ -76,7 +75,8 @@ function Ai() {
     <div className='fixed lg:bottom-[20px] md:bottom-[40px] bottom-[80px] left-[2%] ' onClick={() => {
       if (recognition) {
         recognition.start();
-        openingSound.play()
+        const openingSound = new Audio(`${open}?v=${Date.now()}`);
+        openingSound.play().catch(err => console.log("Audio play error:", err));
         setActiveAi(true)
       } else {
         toast.error("Voice control not supported in this browser")

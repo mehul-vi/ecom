@@ -19,7 +19,10 @@ function UserContext({ children }) {
       return true
     } catch (error) {
       setUserData(null)
-      console.error('Error fetching current user:', error)
+      // Only log errors that are not 401 (unauthenticated is expected for guest users)
+      if (error.response?.status !== 401) {
+        console.error('Error fetching current user:', error)
+      }
       return false
     } finally {
       setIsLoading(false)

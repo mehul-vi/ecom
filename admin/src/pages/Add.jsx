@@ -25,6 +25,12 @@ function Add() {
   const handleAddProduct = async (e) => {
     e.preventDefault()
     if (loading) return
+
+    if (sizes.length === 0) {
+      toast.error('Please select at least one available size.')
+      return
+    }
+
     setLoading(true)
     try {
       const formData = new FormData()
@@ -64,7 +70,8 @@ function Add() {
       }
     } catch (error) {
       setLoading(false)
-      toast.error('Add Product Failed')
+      const errorMsg = error.response?.data?.message || 'Add Product Failed'
+      toast.error(errorMsg)
     }
   }
 

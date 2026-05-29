@@ -101,7 +101,15 @@ export const login = async (req, res) => {
 }
 export const logOut = async (req, res) => {
     try {
-        res.clearCookie("token")
+        const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+        const onVercel = process.env.VERCEL === '1';
+        const secureCookie = isProduction || onVercel;
+
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: secureCookie,
+            sameSite: secureCookie ? "None" : "Lax"
+        })
         return res.status(200).json({ message: "logOut successful" })
     } catch (error) {
         console.log("logOut error")

@@ -11,14 +11,21 @@ export const addProduct = async (req, res) => {
             return res.status(400).json({ message: "All fields are required" })
         }
 
-        if (!req.files || !req.files.image1 || !req.files.image2 || !req.files.image3 || !req.files.image4) {
-            return res.status(400).json({ message: "All images are required" })
+        // Validation: require at least the first image (image1)
+        if (!req.files || !req.files.image1) {
+            return res.status(400).json({ message: "Main image (Image 1) is required" })
         }
 
+        // Upload main image
         let image1 = await uploadOnCloudinary(req.files.image1[0].path)
-        let image2 = await uploadOnCloudinary(req.files.image2[0].path)
-        let image3 = await uploadOnCloudinary(req.files.image3[0].path)
-        let image4 = await uploadOnCloudinary(req.files.image4[0].path)
+        if (!image1) {
+            return res.status(500).json({ message: "Failed to upload main image to Cloudinary" })
+        }
+
+        // Upload optional images, fallback to image1 if not provided or upload fails
+        let image2 = (req.files.image2 && req.files.image2[0]) ? (await uploadOnCloudinary(req.files.image2[0].path) || image1) : image1
+        let image3 = (req.files.image3 && req.files.image3[0]) ? (await uploadOnCloudinary(req.files.image3[0].path) || image1) : image1
+        let image4 = (req.files.image4 && req.files.image4[0]) ? (await uploadOnCloudinary(req.files.image4[0].path) || image1) : image1
 
         let productData = {
             name,
@@ -33,7 +40,6 @@ export const addProduct = async (req, res) => {
             image2,
             image3,
             image4
-
         }
 
         const product = await Product.create(productData)
@@ -45,7 +51,7 @@ export const addProduct = async (req, res) => {
 
     } catch (error) {
         console.error("AddProduct error:", error);
-        return res.status(500).json({ message: "Failed to add product. Please try again later." })
+        return res.status(500).json({ message: "Failed to add product: " + error.message })
     }
 
 }

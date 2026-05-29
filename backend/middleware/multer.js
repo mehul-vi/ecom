@@ -6,7 +6,8 @@ let storage = multer.diskStorage({
         cb(null, os.tmpdir())
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname)
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + '-' + file.originalname)
     }
 });
 let upload = multer({ storage })

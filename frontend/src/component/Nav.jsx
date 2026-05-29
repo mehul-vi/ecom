@@ -12,7 +12,7 @@ import { shopDataContext } from '../context/ShopContext';
 import { useNavigate } from 'react-router-dom';
 
 function Nav() {
-  const { getCurrentUser, userData } = useContext(userDataContext);
+  const { getCurrentUser, userData, setUserData } = useContext(userDataContext);
   const { serverUrl } = useContext(authDataContext);
   const { showSearch, setShowSearch, search, setSearch, getCartCount } = useContext(shopDataContext);
   const [showProfile, setShowProfile] = useState(false);
@@ -21,7 +21,7 @@ function Nav() {
   const handleLogout = async () => {
     try {
       await axios.get(serverUrl + "/api/auth/logout", { withCredentials: true });
-      getCurrentUser();
+      setUserData(null);
       navigate("/login");
     } catch (error) {
       console.log(error);

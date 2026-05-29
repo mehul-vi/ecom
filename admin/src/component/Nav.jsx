@@ -9,13 +9,13 @@ import { toast } from 'react-toastify'
 function Nav() {
   const navigate = useNavigate()
   const { serverUrl } = useContext(authDataContext)
-  const { getAdmin } = useContext(adminDataContext)
+  const { getAdmin, setAdminData } = useContext(adminDataContext)
 
   const logOut = async () => {
     try {
       await axios.get(serverUrl + "/api/auth/logout", { withCredentials: true })
       toast.success("LogOut Successfully")
-      getAdmin()
+      setAdminData(null)
       navigate("/login")
     } catch (error) {
       toast.error("LogOut Failed")

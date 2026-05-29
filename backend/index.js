@@ -68,7 +68,7 @@ app.use("/api/order", orderRoutes)
 // Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack)
-  res.status(500).json({ message: 'Something went wrong!' })
+  res.status(500).json({ message: 'Something went wrong: ' + err.message })
 })
 
 
