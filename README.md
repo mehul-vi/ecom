@@ -1,5 +1,8 @@
 # 🛒 ZOVO - Modern E-Commerce Hub
 
+
+LIVE LINK : https://ecom-2gq4.vercel.app/
+
 ZOVO is a state-of-the-art, full-stack e-commerce application powered by the MERN stack (**MongoDB, Express, React, Node.js**). It features a sleek customer shopping storefront, a robust administrative dashboard, Google OAuth authentication, automatic voice control/AI search assistance, and Cloudinary image integration.
 
 ---
